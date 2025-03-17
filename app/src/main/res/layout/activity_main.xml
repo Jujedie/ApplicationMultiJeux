@@ -1,47 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:text="@string/operation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
 
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/operation"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv1"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/operation" />
-
-    <EditText
-        android:id="@+id/answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/default_answer" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/submit"
-        android:onClick="verificationOperation" />
-
-    <TextView
-        android:id="@+id/isValid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/isValid" />
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="100px"
+        android:text="@string/app_name" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/tv2"
+        android:layout_below="@id/tv1"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="@string/reload"
-        android:onClick="nouvelleOperation" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:hint="@string/tictactoe"
+        android:onClick="accueilTicTacToe" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/tv3"
+        android:layout_below="@id/tv2"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:hint="@string/jeudelavie"
+        android:onClick="accueilJeuDeLaVie" />
+
+    <Button
+        android:id="@+id/tv4"
+        android:layout_below="@id/tv3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:hint="@string/suivi"
+        android:onClick="accueilSuivi" />
+
+    <Button
+        android:id="@+id/tv5"
+        android:layout_below="@id/tv4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
         android:hint="@string/quitter"
         android:onClick="quitterApplication" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_below="@id/tv5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="50px"
+        android:text="@string/score" />
+
+</RelativeLayout>
