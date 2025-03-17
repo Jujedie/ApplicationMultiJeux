@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">ApplicationMultijeux</string>
+<string name="app_name">ApplicationMultijeux</string>
+<string name="hello_world">Hello World !</string>
+<string name="operation"> 4 x 7 = </string>
+<string name="action_settings">Settings</string>
+<string name="default_answer">" ?? "</string>
+<string name="submit">Submit</string>
+<string name="isValid">""</string>
+<string name="quitter">Quitter</string>
+<string name="reload">Reload</string>
 </resources>
