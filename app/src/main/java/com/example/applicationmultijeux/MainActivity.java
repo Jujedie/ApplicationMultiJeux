@@ -1,13 +1,12 @@
 package com.example.applicationmultijeux;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
 {
     private int val1;
     private int val2;
