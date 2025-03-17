@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listeForme">
+        <item>Cercle</item>
+        <item>Triangle</item>
+        <item>Quadrilatère</item>
+        <item>Polygone</item>
+    </string-array>
+    <string-array name="listeNiveau">
+        <item>Très Facile</item>
+        <item>Facile</item>
+        <item>Moyen</item>
+        <item>Difficile</item>
+        <item>Très Difficile</item>
+    </string-array>
+</resources>
