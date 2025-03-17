@@ -1,6 +1,8 @@
 package com.example.applicationmultijeux;
 
-public class SuiviActivity
+import android.app.Activity;
+
+public class SuiviActivity extends Activity
 {
 
 }

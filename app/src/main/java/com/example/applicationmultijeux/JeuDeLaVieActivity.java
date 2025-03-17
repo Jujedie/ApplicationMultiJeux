@@ -1,6 +1,8 @@
 package com.example.applicationmultijeux;
 
-public class JeuDeLaVieActivity
+import android.app.Activity;
+
+public class JeuDeLaVieActivity extends Activity
 {
 
 }
