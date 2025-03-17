@@ -15,14 +15,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/Forme"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="0dp"
         android:text="Niveau : "
         android:textSize="50dp" />
 
     <Spinner
+        android:id="@+id/SpinnerForme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/SpinnerNiveau"
         android:layout_alignRight="@id/Forme"
-        android:scrollbarSize="50dp"
-        android:layout_marginLeft="190dp"/>
+        android:layout_marginLeft="190dp"
+        android:layout_marginRight="-8dp"
+        android:layout_marginBottom="35dp" />
+
+    <Spinner
+        android:id="@+id/SpinnerNiveau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Forme"
+        android:layout_alignRight="@id/Niveau"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="-119dp"/>
 </RelativeLayout>
