@@ -1,10 +1,11 @@
-package com.example.applicationmultijeux;
+/*package com.example.applicationmultijeux;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends Activity
 {
@@ -53,5 +54,33 @@ public class MainActivity extends Activity
 
         TextView theOperation = (TextView) findViewById(R.id.operation);
         theOperation.setText(" " + this.val1 + " x " + this.val2 + " = ");
+    }
+}*/
+
+package com.example.applicationmultijeux;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MainActivity extends Activity
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if ()
+        {
+            
+        }
+        if ()
+        {
+
+        }
+        if()
+        {
+            finish();
+        }
     }
 }
