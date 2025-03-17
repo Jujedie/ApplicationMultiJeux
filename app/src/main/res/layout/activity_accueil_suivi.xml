@@ -9,38 +9,38 @@
         android:id="@+id/Forme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forme  : "
-        android:textSize="50dp"
-        android:textColor="#D55454"/>
+        android:text="Forme  | "
+        android:textColor="#D55454"
+        android:textSize="50dp" />
 
     <TextView
         android:id="@+id/Niveau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/Forme"
-        android:layout_marginTop="0dp"
-        android:text="Niveau : "
-        android:textSize="50dp"
-        android:textColor="#D55454"/>
+        android:layout_marginTop="-1dp"
+        android:text="Niveau | "
+        android:textColor="#D55454"
+        android:textSize="50dp" />
 
     <Spinner
         android:id="@+id/SpinnerForme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="65dp"
         android:layout_above="@+id/SpinnerNiveau"
         android:layout_alignRight="@id/Forme"
         android:layout_marginLeft="190dp"
-        android:layout_marginRight="-8dp"
-        android:layout_marginBottom="35dp" />
+        android:layout_marginRight="-218dp"
+        android:layout_marginBottom="2dp" />
 
     <Spinner
         android:id="@+id/SpinnerNiveau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="215dp"
+        android:layout_height="70dp"
         android:layout_below="@id/Forme"
         android:layout_alignRight="@id/Niveau"
         android:layout_marginTop="0dp"
-        android:layout_marginRight="-119dp"/>
+        android:layout_marginRight="-217dp" />
 
     <Button
         android:layout_width="wrap_content"
