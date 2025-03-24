@@ -22,27 +22,27 @@
         </activity>
         <activity
             android:name=".tictactoe.AccueilTicTacToeActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".jeudelavie.AccueilJeuDeLaVieActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".suivi.AccueilSuiviActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".tictactoe.TicTacToeActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".jeudelavie.JeuDeLaVieActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".suivi.SuiviActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
     </application>
 

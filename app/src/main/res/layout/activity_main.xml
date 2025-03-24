@@ -31,8 +31,7 @@
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/blue"
         android:textColor="@color/black"
-        android:hint="@string/tictactoe"
-        android:onClick="accueilTicTacToe" />
+        android:hint="@string/tictactoe" />
 
     <Button
         android:id="@+id/tv3"
@@ -44,8 +43,7 @@
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/blue"
         android:textColor="@color/black"
-        android:hint="@string/jeudelavie"
-        android:onClick="accueilJeuDeLaVie" />
+        android:hint="@string/jeudelavie" />
 
     <Button
         android:id="@+id/tv4"
@@ -57,8 +55,7 @@
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/blue"
         android:textColor="@color/black"
-        android:hint="@string/suivi"
-        android:onClick="accueilSuivi" />
+        android:hint="@string/suivi" />
 
     <Button
         android:id="@+id/tv5"
@@ -70,8 +67,7 @@
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/red"
         android:textColor="@color/black"
-        android:hint="@string/quitter"
-        android:onClick="quitterApplication" />
+        android:hint="@string/quitter" />
 
     <TextView
         android:id="@+id/tv6"
