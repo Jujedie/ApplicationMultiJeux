@@ -16,6 +16,11 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        accueilTicTacToe();
+        accueilJeuDeLaVie();
+        accueilSuivi();
+        quitterApplication();
     }
 
     public void accueilTicTacToe()
@@ -62,6 +67,14 @@ public class MainActivity extends Activity
 
     public void quitterApplication()
     {
-        this.finish();
+        Button btnQuitter = findViewById(R.id.tv5);
+
+        btnQuitter.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
     }
 }
