@@ -21,15 +21,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".JeuDeLaVieActivity"
+            android:name=".tictactoe.AccueilTicTacToeActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".SuiviActivity"
+            android:name=".jeudelavie.AccueilJeuDeLaVieActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".TicTacToeActivity"
+            android:name=".suivi.AccueilSuiviActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".tictactoe.TicTacToeActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".jeudelavie.JeuDeLaVieActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".suivi.SuiviActivity"
             android:exported="true">
         </activity>
     </application>
