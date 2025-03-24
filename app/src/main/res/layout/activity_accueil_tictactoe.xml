@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/accueilTicTacToe"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".tictactoe.AccueilTicTacToeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="220dp"
+        android:background="@color/blue"/>
+
+    <TextView
+        android:id="@+id/accueilTicTacToe1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="100px"
+        android:text="@string/tictactoe" />
+
+    <Button
+        android:id="@+id/accueilTicTacToe2"
+        android:layout_below="@id/accueilTicTacToe1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
+        android:text="Solo" />
+
+    <Button
+        android:id="@+id/accueilTicTacToe3"
+        android:layout_below="@id/accueilTicTacToe2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
+        android:text="1 contre 1" />
+
+    <TextView
+        android:id="@+id/accueilTicTacToe4"
+        android:layout_below="@id/accueilTicTacToe3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="40px"
+        android:text="@string/tailleGrille" />
+
+    <Spinner
+        android:id="@+id/accueilTicTacToe5"
+        android:layout_below="@id/accueilTicTacToe4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp" />
+
+</RelativeLayout>

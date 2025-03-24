@@ -13,12 +13,19 @@
         <item>Difficile</item>
     </string-array>
 
-    <string-array name="lstTaillesGrilles">
+    <string-array name="lstTaillesGrillesJDLV">
         <item>10x10</item>
         <item>15x15</item>
         <item>20x20</item>
         <item>20x20</item>
         <item>25x25</item>
+    </string-array>
+
+    <string-array name="lstTaillesGrillesTicTacToe">
+        <item>3x3</item>
+        <item>4x4</item>
+        <item>5x5</item>
+        <item>6x6</item>
     </string-array>
 
 </resources>
