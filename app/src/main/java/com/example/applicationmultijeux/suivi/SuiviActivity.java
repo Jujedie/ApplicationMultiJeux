@@ -1,12 +1,17 @@
 package com.example.applicationmultijeux.suivi;
 
 import android.app.Activity;
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+
 import android.os.Bundle;
+
 import android.content.Intent;
+import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.applicationmultijeux.R;
@@ -19,16 +24,28 @@ public class SuiviActivity extends Activity implements SensorEventListener {
     private Sensor        gyroscopeSensor;
     private SensorManager sensorManager;
     private Timer         timer;
+    private int           points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suivi);
 
+        this.points = 100;
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
         TextView timer = findViewById(R.id.Timer);
+        timer.setLayoutParams(new ViewGroup.LayoutParams(screenWidth ,(int)(screenHeight*0.2)));
 
         sensorManager   = (SensorManager) getSystemService(SENSOR_SERVICE);
         gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        if (gyroscopeSensor != null) {
+            sensorManager.registerListener(this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
 
         this.intent   = getIntent();
         String forme  = intent.getStringExtra("forme");
@@ -37,6 +54,7 @@ public class SuiviActivity extends Activity implements SensorEventListener {
         this.dessin = findViewById(R.id.Dessin);
         this.dessin.setForme(forme);
         this.dessin.setNiveau(niveau);
+        this.dessin.setLayoutParams(new ViewGroup.LayoutParams(screenWidth ,(int)(screenHeight*0.8)));
     }
 
     @Override
@@ -44,6 +62,8 @@ public class SuiviActivity extends Activity implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
             float deltaX = event.values[0];
             float deltaY = event.values[1];
+
+            this.dessin.ajouterLigne(deltaX,deltaY);
         }
     }
 
@@ -63,4 +83,6 @@ public class SuiviActivity extends Activity implements SensorEventListener {
     }
 
     public void onDeleted() {}
+
+    public void finirPartie() {}
 }

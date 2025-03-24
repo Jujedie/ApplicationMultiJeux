@@ -29,6 +29,6 @@ public class Timer extends Thread
             }
             catch (Exception e) {}
         }
+        this.suiviActiv.finirPartie();
     }
-    public boolean isFinished(){return this.timeLeft == 0;}
 }
