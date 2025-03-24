@@ -63,7 +63,7 @@ public class Dessin extends View {
                 Path path = new Path();
 
                 path.reset();
-                path.moveTo(largeur / 2, 10);
+                path.moveTo(largeur / 2, 15);
                 path.lineTo(0, hauteur);
                 path.lineTo(largeur, hauteur);
                 path.close();
@@ -72,10 +72,13 @@ public class Dessin extends View {
             }
             else if (this.forme.equals("Carré"))
             {
-
+                int longueurCote = Math.min(largeur, hauteur)-15;
+                canvas.drawRect(0, 0, longueurCote, longueurCote, this.peinture);
             }
         }
     }
+
+    private int getEpaisseur(){return this.epaisseur;}
     private int getEpaisseur(String niveau)
     {
         int epaisseur = 2;
@@ -89,5 +92,4 @@ public class Dessin extends View {
         }
         return epaisseur;
     }
-
 }

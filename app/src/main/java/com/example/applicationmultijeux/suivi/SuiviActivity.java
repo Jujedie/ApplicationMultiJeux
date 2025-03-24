@@ -7,26 +7,31 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.example.applicationmultijeux.R;
 
 
 public class SuiviActivity extends Activity implements SensorEventListener {
+    private Intent        intent;
+
     private Dessin        dessin;
     private Sensor        gyroscopeSensor;
     private SensorManager sensorManager;
+    private Timer         timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suivi);
 
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        TextView timer = findViewById(R.id.Timer);
+
+        sensorManager   = (SensorManager) getSystemService(SENSOR_SERVICE);
         gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-        // Récupérer les données de l'intent
-        Intent intent = getIntent();
-        String forme = intent.getStringExtra("forme");
+        this.intent   = getIntent();
+        String forme  = intent.getStringExtra("forme");
         String niveau = intent.getStringExtra("niveau");
 
         this.dessin = findViewById(R.id.Dessin);
@@ -43,9 +48,7 @@ public class SuiviActivity extends Activity implements SensorEventListener {
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Ne rien faire
-    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
     @Override
     protected void onPause() {
@@ -58,4 +61,6 @@ public class SuiviActivity extends Activity implements SensorEventListener {
         super.onResume();
         sensorManager.registerListener(this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
+
+    public void onDeleted() {}
 }
