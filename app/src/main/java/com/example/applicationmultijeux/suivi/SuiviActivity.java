@@ -1,12 +1,15 @@
-package com.example.applicationmultijeux;
+package com.example.applicationmultijeux.suivi;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
 
+import com.example.applicationmultijeux.R;
+
 
 public class SuiviActivity extends Activity
 {
+    private Dessin dessin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +21,10 @@ public class SuiviActivity extends Activity
         String forme = intent.getStringExtra("forme");
         String niveau= intent.getStringExtra("niveau");
 
-
+        this.dessin = findViewById(R.id.Dessin);
     }
 
-    public void genererFigure(String forme, String niveau)
-    {
 
-    }
 
     /*
     super.onCreate(savedInstanceState);
@@ -46,6 +46,6 @@ public class SuiviActivity extends Activity
                 android.R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);    
+        spinner.setAdapter(adapter);
      */
 }
