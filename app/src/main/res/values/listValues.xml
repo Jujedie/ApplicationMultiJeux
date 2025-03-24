@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="listeForme">
         <item>Cercle</item>
         <item>Triangle</item>
         <item>Carré</item>
     </string-array>
+
     <string-array name="listeNiveau">
         <item>Facile</item>
         <item>Moyen</item>
         <item>Difficile</item>
     </string-array>
+
+    <string-array name="lstTaillesGrilles">
+        <item>10x10</item>
+        <item>15x15</item>
+        <item>20x20</item>
+        <item>20x20</item>
+        <item>25x25</item>
+    </string-array>
+
 </resources>

@@ -5,6 +5,7 @@
 <string name="suivi">Suivi</string>
 <string name="quitter">Quitter</string>
 <string name="lancer">Lancer</string>
+<string name="tailleGrille">Taille de la grille :</string>
 <string name="score">Score</string>
 <string name="parametre">Parametre</string>
 <string name="retour">Retour</string>

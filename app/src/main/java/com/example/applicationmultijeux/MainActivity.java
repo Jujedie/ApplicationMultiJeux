@@ -25,7 +25,7 @@ public class MainActivity extends Activity
 
     public void accueilTicTacToe()
     {
-        Button btnAccueilTicTacToe = findViewById(R.id.tv2);
+        Button btnAccueilTicTacToe = findViewById(R.id.main2);
 
         btnAccueilTicTacToe.setOnClickListener(new View.OnClickListener()
         {
@@ -39,7 +39,7 @@ public class MainActivity extends Activity
 
     public void accueilJeuDeLaVie()
     {
-        Button btnAccueilJeuDeLaVie = findViewById(R.id.tv3);
+        Button btnAccueilJeuDeLaVie = findViewById(R.id.main3);
 
         btnAccueilJeuDeLaVie.setOnClickListener(new View.OnClickListener()
         {
@@ -53,7 +53,7 @@ public class MainActivity extends Activity
 
     public void accueilSuivi()
     {
-        Button btnAccueilSuivi = findViewById(R.id.tv4);
+        Button btnAccueilSuivi = findViewById(R.id.main4);
 
         btnAccueilSuivi.setOnClickListener(new View.OnClickListener()
         {
@@ -67,7 +67,7 @@ public class MainActivity extends Activity
 
     public void quitterApplication()
     {
-        Button btnQuitter = findViewById(R.id.tv5);
+        Button btnQuitter = findViewById(R.id.main5);
 
         btnQuitter.setOnClickListener(new View.OnClickListener()
         {
