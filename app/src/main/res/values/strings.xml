@@ -8,4 +8,6 @@
 <string name="score">Score</string>
 <string name="parametre">Parametre</string>
 <string name="retour">Retour</string>
+<string name="nbLigneJV">Nombre de lignes?</string>
+<string name="nbColonneJV">Nombre de colonnes?</string>
 </resources>
