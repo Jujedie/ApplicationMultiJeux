@@ -21,5 +21,7 @@ public class SuiviActivity extends Activity {
         String niveau = intent.getStringExtra("niveau");
 
         this.dessin = findViewById(R.id.Dessin);
+        this.dessin.setForme(forme);
+        this.dessin.setNiveau(niveau);
     }
 }
