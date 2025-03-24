@@ -5,10 +5,50 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="7dp"
+        android:text="@string/retour"
+        tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="6dp" />
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="100px"
+        android:text="@string/jeudelavie" />
+
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_below="@id/tv1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:hint="@string/nbLigneJV" />
+
+    <EditText
+        android:id="@+id/et2"
+        android:layout_below="@id/et1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:hint="@string/nbColonneJV" />
+
 </RelativeLayout>
