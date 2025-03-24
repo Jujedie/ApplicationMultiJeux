@@ -32,14 +32,14 @@
         android:layout_below="@id/accueilSuivi1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="40px"
-        android:text="Forme" />
+        android:text="Forme :" />
 
     <Spinner
         android:id="@+id/accueilSuivi3"
@@ -62,7 +62,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="40px"
-        android:text="Difficulté" />
+        android:text="Difficulté :" />
 
     <Spinner
         android:id="@+id/accueilSuivi5"
@@ -78,7 +78,7 @@
         android:layout_below="@id/accueilSuivi5"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/blue"
