@@ -7,11 +7,6 @@ import com.example.applicationmultijeux.tictactoe.AccueilTicTacToeActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-=======
->>>>>>> 2726149d23c9d048661d036ac9e1de8dd5d3859a
 import android.view.View;
 import android.widget.Button;
 

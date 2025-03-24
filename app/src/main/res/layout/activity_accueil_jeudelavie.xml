@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnRetour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/retour"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="6dp" />
 
 
     <TextView
@@ -35,7 +28,6 @@
         android:layout_marginTop="80dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
         android:textColor="@color/black"
         android:hint="@string/nbLigneJV" />
 
@@ -47,8 +39,33 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
         android:textColor="@color/black"
         android:hint="@string/nbColonneJV" />
+
+    <Button
+        android:id="@+id/btnJouer"
+        android:layout_below="@id/et2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:text="@string/lancer"
+        android:onClick="onCreate" />
+
+    <Button
+        android:id="@+id/btnRetour"
+        android:layout_below="@id/btnJouer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
+        android:hint="@string/retour"
+        android:onClick="retourApplication" />
 
 </RelativeLayout>
