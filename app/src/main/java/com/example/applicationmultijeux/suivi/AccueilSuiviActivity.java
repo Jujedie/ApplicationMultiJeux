@@ -1,10 +1,15 @@
 package com.example.applicationmultijeux.suivi;
 
 import com.example.applicationmultijeux.R;
+import com.example.applicationmultijeux.jeudelavie.AccueilJeuDeLaVieActivity;
+import com.example.applicationmultijeux.jeudelavie.JeuDeLaVieActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class AccueilSuiviActivity extends Activity
@@ -35,5 +40,21 @@ public class AccueilSuiviActivity extends Activity
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        lancerSuivi();
+    }
+
+    public void lancerSuivi()
+    {
+        Button btnLancer = findViewById(R.id.accueilSuivi6);
+
+        btnLancer.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(AccueilSuiviActivity.this, SuiviActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
