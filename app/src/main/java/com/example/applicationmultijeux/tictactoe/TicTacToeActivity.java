@@ -1,4 +1,4 @@
-package com.example.applicationmultijeux;
+package com.example.applicationmultijeux.tictactoe;
 
 import android.app.Activity;
 

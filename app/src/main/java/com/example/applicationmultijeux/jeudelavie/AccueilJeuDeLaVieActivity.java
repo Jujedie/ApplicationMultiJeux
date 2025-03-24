@@ -1,9 +1,11 @@
-package com.example.applicationmultijeux;
+package com.example.applicationmultijeux.jeudelavie;
+
+import com.example.applicationmultijeux.R;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class JeuDeLaVieActivity extends Activity
+public class AccueilJeuDeLaVieActivity extends Activity
 {
     private boolean[][] tableauJeuVie;
 
@@ -11,9 +13,5 @@ public class JeuDeLaVieActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
-
-
 }
