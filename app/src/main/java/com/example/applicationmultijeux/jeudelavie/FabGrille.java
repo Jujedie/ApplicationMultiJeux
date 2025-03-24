@@ -1,4 +1,4 @@
-package JeuDeLaVie;
+package com.example.applicationmultijeux.jeudelavie;
 
 public class FabGrille 
 {

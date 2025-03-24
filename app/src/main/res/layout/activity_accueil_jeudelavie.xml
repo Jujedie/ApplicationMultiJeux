@@ -16,31 +16,33 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="100px"
+        android:textSize="40dp"
         android:text="@string/jeudelavie" />
 
 
     <EditText
         android:id="@+id/et1"
-        android:layout_below="@id/tv1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_below="@id/tv1"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="100dp"
-        android:textColor="@color/black"
-        android:hint="@string/nbLigneJV" />
+        android:hint="@string/nbLigneJV"
+        android:inputType="number"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/et2"
-        android:layout_below="@id/et1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/et1"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="100dp"
-        android:textColor="@color/black"
-        android:hint="@string/nbColonneJV" />
+        android:hint="@string/nbColonneJV"
+        android:inputType="number"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btnJouer"
@@ -57,15 +59,15 @@
 
     <Button
         android:id="@+id/btnRetour"
-        android:layout_below="@id/btnJouer"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_below="@id/btnJouer"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="35dp"
         android:layout_marginRight="100dp"
         android:backgroundTint="@color/red"
-        android:textColor="@color/black"
         android:hint="@string/retour"
-        android:onClick="retourApplication" />
+        android:onClick="retourApplication"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
