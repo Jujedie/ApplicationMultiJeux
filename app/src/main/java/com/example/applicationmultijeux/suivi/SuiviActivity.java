@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.applicationmultijeux.MainActivity;
 import com.example.applicationmultijeux.R;
 
 
@@ -23,7 +24,6 @@ public class SuiviActivity extends Activity implements SensorEventListener {
     private Dessin        dessin;
     private Sensor        gyroscopeSensor;
     private SensorManager sensorManager;
-    private Timer         timer;
     private int           points;
 
     @Override
@@ -55,6 +55,9 @@ public class SuiviActivity extends Activity implements SensorEventListener {
         this.dessin.setForme(forme);
         this.dessin.setNiveau(niveau);
         this.dessin.setLayoutParams(new ViewGroup.LayoutParams(screenWidth ,(int)(screenHeight*0.8)));
+
+        Timer timerGame = new Timer(60, this);
+        timerGame.run();
     }
 
     @Override
@@ -84,5 +87,15 @@ public class SuiviActivity extends Activity implements SensorEventListener {
 
     public void onDeleted() {}
 
-    public void finirPartie() {}
+    public void finirPartie()
+    {
+        int malus = this.dessin.getPointMalus();
+        this.points += malus;
+
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("Score", this.points);
+
+        setResult(MainActivity.RESULT_OK, resultIntent);
+        finish();
+    }
 }

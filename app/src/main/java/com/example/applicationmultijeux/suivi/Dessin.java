@@ -68,7 +68,7 @@ public class Dessin extends View {
     }
     public void setForme (String forme) {this.forme = forme;}
     public void setNiveau(String forme) {this.niveau = forme;}
-    
+
     public void setSuiviActiv(SuiviActivity suiviActiv) {this.suiviActiv = suiviActiv;}
 
     @Override
@@ -99,8 +99,8 @@ public class Dessin extends View {
 
                 path.reset();
                 path.moveTo(largeur / 2, 15);
-                path.lineTo(0, hauteur);
-                path.lineTo(largeur, hauteur);
+                path.lineTo(15, hauteur-15);
+                path.lineTo(largeur-15, hauteur-15);
                 path.close();
 
                 canvas.drawPath(path, this.peinture);
@@ -161,5 +161,17 @@ public class Dessin extends View {
 
             invalidate();
         }
+    }
+
+    public int getPointMalus()
+    {
+        int malus = 0;
+
+        if (this.forme.equals("Cercle"))
+        {
+
+        }
+
+        return malus;
     }
 }
