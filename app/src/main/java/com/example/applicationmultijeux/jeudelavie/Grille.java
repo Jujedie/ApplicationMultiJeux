@@ -1,4 +1,4 @@
-package JeuDeLaVie;
+package com.example.applicationmultijeux.jeudelavie;
 
 import java.util.ArrayList;
 import java.util.List;
