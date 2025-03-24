@@ -1,54 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="410dp"
-    android:layout_height="225dp"
-    android:layout_marginTop="230dp"
-    android:background="#E6DDDD">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/accueilSuivi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    tools:context=".suivi.AccueilSuiviActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="220dp"
+        android:background="@color/blue"/>
 
     <TextView
-        android:id="@+id/Forme"
-        android:layout_width="wrap_content"
+        android:id="@+id/accueilSuivi1"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Forme  | "
-        android:textColor="#D55454"
-        android:textSize="50dp" />
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="100px"
+        android:text="@string/suivi" />
 
     <TextView
-        android:id="@+id/Niveau"
-        android:layout_width="wrap_content"
+        android:id="@+id/accueilSuivi2"
+        android:layout_below="@id/accueilSuivi1"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Forme"
-        android:layout_marginTop="-1dp"
-        android:text="Niveau | "
-        android:textColor="#D55454"
-        android:textSize="50dp" />
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="40px"
+        android:text="Forme" />
 
     <Spinner
-        android:id="@+id/SpinnerForme"
-        android:layout_width="220dp"
-        android:layout_height="65dp"
-        android:layout_above="@+id/SpinnerNiveau"
-        android:layout_alignRight="@id/Forme"
-        android:layout_marginLeft="190dp"
-        android:layout_marginRight="-218dp"
-        android:layout_marginBottom="2dp" />
+        android:id="@+id/accueilSuivi3"
+        android:layout_below="@id/accueilSuivi2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp" />
+
+    <TextView
+        android:id="@+id/accueilSuivi4"
+        android:layout_below="@id/accueilSuivi3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="40px"
+        android:text="Difficulté" />
 
     <Spinner
-        android:id="@+id/SpinnerNiveau"
-        android:layout_width="215dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/Forme"
-        android:layout_alignRight="@id/Niveau"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="-217dp" />
+        android:id="@+id/accueilSuivi5"
+        android:layout_below="@id/accueilSuivi4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/accueilSuivi6"
+        android:layout_below="@id/accueilSuivi5"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Niveau"
-        android:layout_marginTop="7dp"
-        android:backgroundTint="#D55454"
-        android:text="Comfirmer"
-        android:textSize="50dp" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/black"
+        android:text="@string/lancer" />
 
 </RelativeLayout>

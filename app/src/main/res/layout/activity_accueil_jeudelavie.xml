@@ -8,6 +8,12 @@
 
     tools:context=".jeudelavie.AccueilJeuDeLaVieActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="220dp"
+        android:background="@color/blue"/>
+
     <TextView
         android:id="@+id/accueilJDLV1"
         android:layout_width="300dp"
@@ -26,7 +32,7 @@
         android:layout_below="@id/accueilJDLV1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"

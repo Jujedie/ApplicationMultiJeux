@@ -20,7 +20,7 @@ public class AccueilJeuDeLaVieActivity extends Activity
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
             this,
-            R.array.lstTaillesGrilles,
+            R.array.lstTaillesGrillesJDLV,
             android.R.layout.simple_spinner_item
         );
 

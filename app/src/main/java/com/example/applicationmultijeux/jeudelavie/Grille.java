@@ -32,5 +32,15 @@ public class Grille
 			c.etatSuivant();
 	}
 
+	public Set<Cellule> getSetCellule()
+	{
+		return cellules;
+	}
+
+	public int getCote()
+	{
+		return (int)Math.sqrt(cellules.size());
+	}
+
 
 }

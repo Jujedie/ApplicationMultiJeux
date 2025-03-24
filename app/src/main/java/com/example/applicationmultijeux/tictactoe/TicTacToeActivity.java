@@ -226,7 +226,7 @@ class VueMorpion extends View
         int col = (int) ((y - this.margeHauteur) / tailleCellule);
         int lig = (int) ((x - this.margeLargeur) / tailleCellule);
         if (col >= 0 && col < nbLignes && lig >= 0 && lig < nbLignes) {
-            ((MainActivity) getContext()).click(lig, col);
+            ((TicTacToeActivity) getContext()).click(lig, col);
         }
         invalidate();
 
