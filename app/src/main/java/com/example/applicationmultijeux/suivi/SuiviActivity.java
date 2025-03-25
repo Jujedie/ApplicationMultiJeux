@@ -99,7 +99,7 @@ public class SuiviActivity extends AppCompatActivity
         Intent resultIntent = new Intent();
         resultIntent.putExtra("Score", this.points);
 
-        setResult(MainActivity.RESULT_OK, resultIntent);
+        setResult(AccueilSuiviActivity.RESULT_OK, resultIntent);
         finish();
     }
 }
