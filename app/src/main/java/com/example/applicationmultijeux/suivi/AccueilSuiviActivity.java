@@ -48,7 +48,9 @@ public class AccueilSuiviActivity extends AppCompatActivity
                 {
                     if (view != null)
                     {
-                        ((TextView) view).setTextColor(ContextCompat.getColor(AccueilSuiviActivity.this, R.color.clair)
+                        ((TextView) view).setTextColor
+                        (
+                            ContextCompat.getColor(AccueilSuiviActivity.this, R.color.clair)
                         );
                     }
                 }

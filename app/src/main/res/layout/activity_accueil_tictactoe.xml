@@ -4,25 +4,19 @@
     android:id="@+id/accueilTicTacToe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sombre"
 
     tools:context=".tictactoe.AccueilTicTacToeActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="220dp"
-        android:background="@color/blue"/>
 
     <TextView
         android:id="@+id/accueilTicTacToe1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="100px"
         android:text="@string/tictactoe" />
@@ -32,11 +26,11 @@
         android:layout_below="@id/accueilTicTacToe1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/red"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="Solo" />
 
     <Button
@@ -47,8 +41,8 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/red"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="1 contre 1" />
 
     <TextView
@@ -60,7 +54,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:text="@string/tailleGrille" />
@@ -72,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp" />
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/violet"
+        android:popupBackground="@color/violet" />
 
 </RelativeLayout>

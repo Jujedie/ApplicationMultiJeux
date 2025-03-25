@@ -48,7 +48,9 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
                 {
                     if (view != null)
                     {
-                        ((TextView) view).setTextColor(ContextCompat.getColor(AccueilJeuDeLaVieActivity.this, R.color.clair)
+                        ((TextView) view).setTextColor
+                        (
+                            ContextCompat.getColor(AccueilJeuDeLaVieActivity.this, R.color.clair)
                         );
                     }
                 }
