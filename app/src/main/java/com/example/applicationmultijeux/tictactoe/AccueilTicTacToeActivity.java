@@ -12,12 +12,14 @@ import android.widget.Spinner;
 
 public class AccueilTicTacToeActivity extends Activity
 {
+    private Spinner spinnerTailleGrille;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil_tictactoe);
 
-        Spinner spinner = (Spinner) findViewById(R.id.accueilTicTacToe5);
+        spinnerTailleGrille = (Spinner) findViewById(R.id.accueilTicTacToe5);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
             this,
@@ -26,7 +28,7 @@ public class AccueilTicTacToeActivity extends Activity
         );
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerTailleGrille.setAdapter(adapter);
 
         lancerTicTacToe();
     }
@@ -34,12 +36,26 @@ public class AccueilTicTacToeActivity extends Activity
     public void lancerTicTacToe()
     {
         Button btnSolo = findViewById(R.id.accueilTicTacToe2);
+        Button btn1contre1 = findViewById(R.id.accueilTicTacToe3);
 
         btnSolo.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
                 Intent intent = new Intent(AccueilTicTacToeActivity.this, TicTacToeActivity.class);
+                intent.putExtra("Solo", "Solo");
+                intent.putExtra("TailleGrille", (String) spinnerTailleGrille.getSelectedItem());
+                startActivity(intent);
+            }
+        });
+
+        btn1contre1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(AccueilTicTacToeActivity.this, TicTacToeActivity.class);
+                intent.putExtra("1contre1", "1contre1");
+                intent.putExtra("TailleGrille", (String) spinnerTailleGrille.getSelectedItem());
                 startActivity(intent);
             }
         });
