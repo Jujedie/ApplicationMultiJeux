@@ -1,7 +1,5 @@
 package com.example.applicationmultijeux.tictactoe;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -14,7 +12,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class TicTacToeActivity extends Activity
+public class TicTacToeActivity extends AppCompatActivity
 {
     private VueMorpion vueMorpion;
     int joueur;

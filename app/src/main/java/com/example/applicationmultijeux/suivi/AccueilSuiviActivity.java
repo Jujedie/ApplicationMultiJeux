@@ -2,7 +2,6 @@ package com.example.applicationmultijeux.suivi;
 
 import com.example.applicationmultijeux.R;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class AccueilSuiviActivity extends Activity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AccueilSuiviActivity extends AppCompatActivity
 {
     private Spinner spinnerForme;
     private Spinner spinnerDifficulte;
