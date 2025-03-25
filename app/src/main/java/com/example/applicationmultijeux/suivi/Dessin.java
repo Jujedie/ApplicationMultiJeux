@@ -165,13 +165,34 @@ public class Dessin extends View {
 
     public int getPointMalus()
     {
-        int malus = 0;
+        int nbLigneEnDehors = 0;
 
+        int largeur = getWidth();
+        int hauteur = getHeight();
+        
         if (this.forme.equals("Cercle"))
+        {
+            int rayon = Math.min(largeur, hauteur) / 3;
+            
+            for(float[] ligne : this.lignes)
+            {
+                for(int numPoint = 0; numPoint <= 1; numPoint++)
+                {
+                    double d = Math.pow(ligne[0] - largeur / 2, 2) + Math.pow(ligne[1] - hauteur / 2, 2);
+
+                    if (!( Math.pow(rayon-(this.getEpaisseur()/2),2) <= Math.pow(d,2) && Math.pow(d,2) <= Math.pow(rayon+(this.getEpaisseur()/2),2) ))
+                    {
+                        nbLigneEnDehors++;
+                        break;
+                    }
+                }
+            }
+        }
+        else if ( this.forme.equals("Triangle") )
         {
 
         }
 
-        return malus;
+        return (int)( 100 * ( nbLigneEnDehors/this.lignes.size() ) );
     }
 }

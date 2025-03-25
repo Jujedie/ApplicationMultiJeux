@@ -49,7 +49,7 @@ public class SuiviActivity extends Activity implements SensorEventListener {
 
         this.intent   = getIntent();
         String forme  = intent.getStringExtra("forme");
-        String niveau = intent.getStringExtra("niveau");
+        String niveau = intent.getStringExtra("difficulte");
 
         this.dessin = findViewById(R.id.Dessin);
         this.dessin.setForme(forme);
