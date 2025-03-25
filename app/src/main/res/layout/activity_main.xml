@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sombre"
 
     tools:context=".MainActivity">
 
@@ -16,7 +16,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="100px"
         android:text="@string/app_name" />
@@ -29,8 +29,8 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="@string/tictactoe" />
 
     <Button
@@ -41,8 +41,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="@string/jeudelavie" />
 
     <Button
@@ -53,8 +53,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="@string/suivi" />
 
     <Button
@@ -65,8 +65,8 @@
         android:layout_marginTop="50dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/red"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/rouge"
+        android:textColor="@color/sombre"
         android:text="@string/quitter" />
 
     <TextView
@@ -78,7 +78,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="50px"
         android:text="@string/score" />
