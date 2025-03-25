@@ -4,25 +4,19 @@
     android:id="@+id/accueilSuivi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sombre"
 
     tools:context=".suivi.AccueilSuiviActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="220dp"
-        android:background="@color/blue"/>
 
     <TextView
         android:id="@+id/accueilSuivi1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="100px"
         android:text="@string/suivi" />
@@ -32,11 +26,11 @@
         android:layout_below="@id/accueilSuivi1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:text="Forme :" />
@@ -48,7 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp" />
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/violet"
+        android:popupBackground="@color/violet" />
 
     <TextView
         android:id="@+id/accueilSuivi4"
@@ -59,7 +55,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:text="Difficulté :" />
@@ -71,7 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp" />
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/violet"
+        android:popupBackground="@color/violet" />
 
     <Button
         android:id="@+id/accueilSuivi6"
@@ -81,8 +79,8 @@
         android:layout_marginTop="120dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="@string/lancer" />
 
 </RelativeLayout>
