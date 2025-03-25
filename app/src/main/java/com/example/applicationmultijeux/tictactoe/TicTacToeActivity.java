@@ -15,29 +15,62 @@ import android.content.Intent;
 
 public class TicTacToeActivity extends AppCompatActivity
 {
+    //SI ON EST EN MODE SOLO, LE JOUEUR IA A POUR ID 2
     private VueMorpion vueMorpion;
     String mode;
-    int joueur;
+    Joueur j1;
+    Joueur j2;
+    Joueur jCourant;
     int tailleGrille;
     char[][] grille;
     int nbCoups;
+    int nbParties;
     boolean interactionAutorisee = true;
 
-    int scoreJ1;
-    int scoreJ2;
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        this.mode = intent.hasExtra("Solo") ? "Solo" : "1contre1";
-        this.tailleGrille = Integer.parseInt(intent.getStringExtra("TailleGrille").split("x")[0]);
-        this.grille = new char[this.tailleGrille][this.tailleGrille];
-        this.joueur = 1;
-        this.nbCoups = 0;
-        this.initGrille();
 
+        Intent intent = getIntent();
+
+        this.mode = intent.hasExtra("Solo") ? "Solo" : "1contre1";
+
+        this.j1 = new Joueur(1, 'O');
+        this.j2 = new Joueur(2, 'X');
+
+
+        this.nbParties = 0;
+        this.tailleGrille = Integer.parseInt(intent.getStringExtra("TailleGrille").split("x")[0]);
+
+        this.grille = new char[this.tailleGrille][this.tailleGrille];
+
+        this.nouvellePartie();
         setContentView(new VueMorpion(this, this.grille));
+
+
+    }
+
+    private void nouvellePartie()
+    {
+        if (this.nbParties != 0)
+        {
+            this.j1.setSymbole(this.j2.getSymbole());
+            if (this.j2.getSymbole() == 'X')
+            {
+                this.j2.setSymbole('O');
+            }
+            else
+            {
+                this.j2.setSymbole('X');
+            }
+            this.nbCoups = 0;
+        }
+        this.initGrille();
+        this.jCourant = this.j1;
+        Log.d("TAG", this.jCourant.getSymbole() + "");
+        this.nbParties ++;
+
     }
 
     private void initGrille()
@@ -64,9 +97,9 @@ public class TicTacToeActivity extends AppCompatActivity
             col = (int) (Math.random() * this.tailleGrille);
         }
         this.nbCoups++;
-        this.grille[lig][col] = 'X';
-        this.verifVictoire('X', lig, col);
-        this.joueur = 1;
+        this.grille[lig][col] = this.jCourant.getSymbole();
+        this.verifVictoire(this.jCourant.getSymbole(), lig, col);
+        this.jCourant = this.j1;
         this.interactionAutorisee = true;
     }
 
@@ -75,24 +108,21 @@ public class TicTacToeActivity extends AppCompatActivity
         if (this.grille[lig][col] == ' ')
         {
             this.nbCoups++;
+            this.grille[lig][col] = this.jCourant.getSymbole();
+            this.verifVictoire(this.jCourant.getSymbole(), lig, col);
             if (this.mode.equals("Solo"))
             {
-                this.grille[lig][col] = 'O';
-                this.verifVictoire('O', lig, col);
                 this.interactionAutorisee = false;
+                this.jCourant = this.j2;
                 this.clickIA();
             }
-            else if (this.joueur == 1)
+            else if (this.jCourant == this.j1)
             {
-                this.grille[lig][col] = 'O';
-                this.verifVictoire('O', lig, col);
-                this.joueur = 2;
+                this.jCourant = j2;
             }
             else
             {
-                this.grille[lig][col] = 'X';
-                this.verifVictoire('X', lig, col);
-                this.joueur = 1;
+                this.jCourant = j1;
             }
         }
     }
@@ -108,13 +138,13 @@ public class TicTacToeActivity extends AppCompatActivity
 
         if (verifAlignement(lig, 0, 0, 1, cara, alignementNecessaire))
         {
-            Log.d("TAG", "Joueur " + cara +" gagne");
+            this.jCourant.setScore(this.jCourant.getScore() + 1);
             return true;
         }
 
         if (verifAlignement(0, col, 1, 0, cara, alignementNecessaire))
         {
-            Log.d("TAG", "Joueur " + cara +" gagne");
+            this.jCourant.setScore(this.jCourant.getScore() + 1);
             return true;
         }
 
@@ -122,7 +152,7 @@ public class TicTacToeActivity extends AppCompatActivity
         int departy = col - Math.min(lig, col);
         if (verifAlignement(departx, departy, 1, 1, cara, alignementNecessaire))
         {
-            Log.d("TAG", "Joueur " + cara +" gagne");
+            this.jCourant.setScore(this.jCourant.getScore() + 1);
             return true;
         }
 
@@ -130,7 +160,7 @@ public class TicTacToeActivity extends AppCompatActivity
         departy = col + Math.min(lig, this.tailleGrille - 1 - col);
         if (verifAlignement(departx, departy, 1, -1, cara, alignementNecessaire))
         {
-            Log.d("TAG", "Joueur " + cara +" gagne");
+            this.jCourant.setScore(this.jCourant.getScore() + 1);
             return true;
         }
 
