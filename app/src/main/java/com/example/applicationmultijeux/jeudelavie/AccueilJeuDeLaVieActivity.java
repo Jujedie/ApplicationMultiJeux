@@ -5,12 +5,15 @@ import com.example.applicationmultijeux.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class AccueilJeuDeLaVieActivity extends AppCompatActivity
 {
@@ -31,6 +34,30 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTailleGrille.setAdapter(adapter);
+
+        spinnerTailleGrille.post(() ->
+        {
+            ((TextView)spinnerTailleGrille.getSelectedView()).setTextColor
+            (
+                ContextCompat.getColor(this, R.color.clair));
+
+                spinnerTailleGrille.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        if (view != null)
+                        {
+                            ((TextView) view).setTextColor
+                            (
+                                ContextCompat.getColor(AccueilJeuDeLaVieActivity.this, R.color.clair)
+                            );
+                        }
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {}
+                }
+            );
+        });
 
         lancerJeuDeLaVie();
     }

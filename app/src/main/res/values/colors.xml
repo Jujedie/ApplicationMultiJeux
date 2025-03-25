@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sombre">#FF262626</color>
     <color name="clair">#FFE1E1E1</color>
+    <color name="gris_clair">#FFA0A0A0</color>
     <color name="violet">#FFBB86FC</color>
     <color name="rouge">#FFD32F2F</color>
     <color name="separation">#FF404040</color>
