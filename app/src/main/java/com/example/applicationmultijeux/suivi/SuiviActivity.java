@@ -1,5 +1,7 @@
 package com.example.applicationmultijeux.suivi;
 
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -99,7 +101,7 @@ public class SuiviActivity extends AppCompatActivity
         Intent resultIntent = new Intent();
         resultIntent.putExtra("Score", this.points);
 
-        setResult(AccueilSuiviActivity.RESULT_OK, resultIntent);
+        setResult(MainActivity.RESULT_OK, resultIntent);
         finish();
     }
 }
