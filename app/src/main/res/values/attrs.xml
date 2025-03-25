@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Dessin">
+        <attr name="couleur" format="color" />
+        <attr name="epaisseur" format="integer"/>
+
+        <attr name="startX" format="integer"/>
+        <attr name="startY" format="integer"/>
+
+        <attr name="forme" format="string"/>
+        <attr name="niveau" format="string"/>
     </declare-styleable>
 </resources>
