@@ -45,6 +45,9 @@ public class TicTacToeActivity extends AppCompatActivity
         this.msgFin = findViewById(R.id.msgFin);
         this.score = findViewById(R.id.score);
         this.btnRejouer = findViewById(R.id.btnRejouer);
+        this.btnRejouer.setOnClickListener(v -> nouvellePartie());
+
+        this.msgFin.setText("Touchez la grille pour commencer");
 
 
 
@@ -78,17 +81,27 @@ public class TicTacToeActivity extends AppCompatActivity
                 this.j2.setSymbole('X');
             }
             this.nbCoups = 0;
+            this.msgFin.setText("Symboles inversés !");
         }
         this.initGrille();
         this.jCourant = this.j1;
         this.nbParties ++;
 
-        String scorej1j2 = "Score Joueur 1 (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Joueur 2 (" + this.j2.getSymbole() + ") : " + this.j1.getScore();
+        String scorej1j2;
+        if (this.mode.equals("Solo"))
+        {
+            scorej1j2 = "Votre Score (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Ordinateur (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
+        }
+        else
+        {
+            scorej1j2 = "Score Joueur 1 (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Joueur 2 (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
+
+        }
         this.score.setText(scorej1j2);
-        this.msgFin.setText("");
-        this.btnRejouer.setVisibility(View.GONE);
+        this.btnRejouer.setEnabled(false);
         VueMorpion vueMorpion = findViewById(R.id.vueMorpion);
         vueMorpion.invalidate();
+        this.interactionAutorisee = true;
 
     }
 
@@ -151,7 +164,7 @@ public class TicTacToeActivity extends AppCompatActivity
         }
     }
 
-    public boolean verifVictoire(char cara, int lig, int col)
+    public void verifVictoire(char cara, int lig, int col)
     {
         int alignementNecessaire = 4;
 
@@ -163,13 +176,15 @@ public class TicTacToeActivity extends AppCompatActivity
         if (verifAlignement(lig, 0, 0, 1, cara, alignementNecessaire))
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
-            return true;
+            this.finJeu(true);
+            return;
         }
 
         if (verifAlignement(0, col, 1, 0, cara, alignementNecessaire))
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
-            return true;
+            this.finJeu(true);
+            return;
         }
 
         int departx = lig - Math.min(lig, col);
@@ -177,7 +192,8 @@ public class TicTacToeActivity extends AppCompatActivity
         if (verifAlignement(departx, departy, 1, 1, cara, alignementNecessaire))
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
-            return true;
+            this.finJeu(true);
+            return;
         }
 
         departx = lig - Math.min(lig, this.tailleGrille - 1 - col);
@@ -185,15 +201,14 @@ public class TicTacToeActivity extends AppCompatActivity
         if (verifAlignement(departx, departy, 1, -1, cara, alignementNecessaire))
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
-            return true;
+            this.finJeu(true);
+            return;
         }
 
         if (this.nbCoups == Math.pow(this.tailleGrille, 2))
         {
-            Log.d("TAG", "Match nul");
+            this.finJeu(false);
         }
-
-        return false;
     }
 
     private boolean verifAlignement(int xdepart, int ydepart, int xajout, int yajout, char cara, int alignement)
@@ -219,10 +234,36 @@ public class TicTacToeActivity extends AppCompatActivity
         return false;
     }
 
-    private void finJeu()
+    private void finJeu(boolean victoire)
     {
+        String msgFin;
         this.interactionAutorisee = false;
 
+        if (victoire)
+        {
+            if (this.mode.equals("Solo"))
+            {
+                if (this.jCourant.getId() == 1)
+                {
+                    msgFin = "Victoire !";
+                }
+                else
+                {
+                    msgFin = "Défaite !";
+                }
+            }
+            else
+            {
+                msgFin = "Victoire du joueur " + this.jCourant.getId() + " avec le symbole " + this.jCourant.getSymbole();
+            }
+        }
+        else
+        {
+            msgFin = "Match nul";
+        }
+
+        this.msgFin.setText(msgFin);
+        this.btnRejouer.setEnabled(true);
     }
 }
 
@@ -240,8 +281,6 @@ class VueMorpion extends View
     public VueMorpion(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-
-
     }
     public void onDraw(Canvas canvas)
     {
@@ -249,7 +288,7 @@ class VueMorpion extends View
         if (((TicTacToeActivity) getContext()).getGrille() != null)
         {
             this.grille = ((TicTacToeActivity) getContext()).getGrille();
-            canvas.drawColor(Color.WHITE);
+            canvas.drawColor(getResources().getColor(R.color.sombre));
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(10f);
             this.tailleGrille = Math.min(getWidth(), getHeight()) - 200;
@@ -262,7 +301,7 @@ class VueMorpion extends View
     }
     public void dessinerO(Canvas canvas, int x, int y, int taille)
     {
-        paint.setColor(Color.parseColor("green"));
+        paint.setColor(getResources().getColor(R.color.green));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10f);
 
@@ -277,13 +316,13 @@ class VueMorpion extends View
     public void dessinerX(Canvas canvas, int x, int y, int taille)
     {
         int ecart = taille/2;
-        paint.setColor(Color.parseColor("red"));
+        paint.setColor(getResources().getColor(R.color.rouge));
         canvas.drawLine(x-ecart, y-ecart, x+ecart, y + ecart , paint);
         canvas.drawLine(x+ecart, y-ecart, x-ecart, y + ecart , paint);
     }
     public void dessinerGrille(Canvas canvas, char[][] grille)
     {
-        paint.setColor(Color.parseColor("black"));
+        paint.setColor(getResources().getColor(R.color.clair));
 
         int x = margeLargeur;
         int y = margeHauteur;
