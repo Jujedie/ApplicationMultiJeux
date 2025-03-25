@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,15 +23,16 @@ public class JeuDeLaVieActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         dessin = new MaVue(this);
-        setContentView(R.layout.activity_jeudelavie);
 
         Intent myIntent = getIntent();
 
-        int taille = Integer.valueOf(myIntent.getStringExtra("TailleGrille").substring(0, 2));
-        int proportion = Integer.valueOf((myIntent.getStringExtra("DensiteCellulesVivantes").toString())); // "java.lang.ClassCastException: android.text.SpannableString cannot be cast to java.lang.String" THERE IS A COMMAND FOR THAT THO
+        int taille = Integer.parseInt(myIntent.getStringExtra("TailleGrille").substring(0, 2));
+        int proportion = Integer.parseInt((myIntent.getStringExtra("DensiteCellulesVivantes")));
 
         if (proportion > 100) proportion = 100;
         if (proportion != 0 ) proportion = proportion / 100;
+
+        Log.d("TAG", proportion + "");
 
         grilleJeuVie = FabGrille.creation(taille, proportion);
 
@@ -45,8 +47,23 @@ public class JeuDeLaVieActivity extends AppCompatActivity
             grilleJeuVie.etatSuivant();
             Cellule[] tabCellule = new Cellule[grilleJeuVie.getSetCellule().size()];
 
-            if (grilleJeuVie.getSetCellule().toArray() instanceof Cellule[])
-                tabCellule = (Cellule[]) grilleJeuVie.getSetCellule().toArray();
+            if (grilleJeuVie.getSetCellule().toArray(new Cellule[0]) instanceof Cellule[])
+                tabCellule = (Cellule[]) grilleJeuVie.getSetCellule().toArray(new Cellule[0]); // null?
+
+            if (grilleJeuVie == null)
+            {
+                throw new RuntimeException("grilleJeuVie est null !");
+            }
+            if (grilleJeuVie.getSetCellule() == null)
+            {
+                throw new RuntimeException("getSetCellule est null !");
+            }
+
+            if (grilleJeuVie.getSetCellule().toArray() == null)
+            {
+                throw new RuntimeException("toArray est null !");
+            }
+
 
             int tailleRcnCarre = (int) Math.round(Math.sqrt(grilleJeuVie.getSetCellule().size()));
             tableauJeuVie = new boolean[tailleRcnCarre][tailleRcnCarre];
@@ -69,6 +86,7 @@ public class JeuDeLaVieActivity extends AppCompatActivity
         }
 
 
+        setContentView(dessin);
     }
 
     class MaVue extends View
