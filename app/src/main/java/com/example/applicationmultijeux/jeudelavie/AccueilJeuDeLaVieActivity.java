@@ -73,7 +73,16 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(AccueilJeuDeLaVieActivity.this, JeuDeLaVieActivity.class);
                 intent.putExtra("TailleGrille", (String) spinnerTailleGrille.getSelectedItem());
-                intent.putExtra("DensiteCellulesVivantes", edtDensite.getText());
+
+                if (edtDensite.getText() == null || edtDensite.getText().equals(""))
+                {
+                    intent.putExtra("DensiteCellulesVivantes", "50");
+                }
+                else
+                {
+                    intent.putExtra("DensiteCellulesVivantes", edtDensite.getText());
+                }
+
                 startActivity(intent);
             }
         });
