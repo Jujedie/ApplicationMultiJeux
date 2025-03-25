@@ -156,7 +156,7 @@ public class Dessin extends View {
     }
 
     public int getPointMalus() {
-        int nbLigneEnDehors = 0;
+        double nbLigneEnDehors = 0.0;
 
         int largeur = getWidth();
         int hauteur = getHeight();
@@ -174,9 +174,6 @@ public class Dessin extends View {
                     }
                 }
             }
-
-            Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
-            return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
         } else if (this.forme.equals("Triangle")) {
 
             float[] p1 = {largeur / 2, 65};
@@ -195,8 +192,6 @@ public class Dessin extends View {
                 }
             }
 
-            Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
-            return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
         }else if (this.forme.equals("Carré")) {
 
             int longueurCote = Math.min(largeur, hauteur) - 65;
@@ -213,10 +208,12 @@ public class Dessin extends View {
                 }
             }
 
-            Log.d("DEBUG", "=======================================" + (int) (100 * ((double) nbLigneEnDehors / this.lignes.size())) + "=======================================");
-            return (int) (100 * ((double) nbLigneEnDehors / this.lignes.size()) * -1);
+
         }
-        return 0;
+        if (nbLigneEnDehors == 0) {return 0;}
+
+        Log.d("DEBUG", "=======================================" + (int)(100 * ((double) nbLigneEnDehors / this.lignes.size())) + "=======================================");
+        return  (int)(100 * ((double) nbLigneEnDehors / this.lignes.size()) * -1);
     }
 
     private boolean isPointInTriangle(float x, float y, float[] p1, float[] p2, float[] p3) {
