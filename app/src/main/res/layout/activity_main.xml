@@ -81,6 +81,6 @@
         android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="50px"
-        android:text="" />
+        android:text="Score" />
 
 </RelativeLayout>
