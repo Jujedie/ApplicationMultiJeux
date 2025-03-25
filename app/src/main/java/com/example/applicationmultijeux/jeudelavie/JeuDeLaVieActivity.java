@@ -2,15 +2,17 @@ package com.example.applicationmultijeux.jeudelavie;
 
 import com.example.applicationmultijeux.R;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 
-public class JeuDeLaVieActivity extends Activity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class JeuDeLaVieActivity extends AppCompatActivity
 {
     private Grille      grilleJeuVie;
     private boolean[][] tableauJeuVie;
@@ -22,9 +24,17 @@ public class JeuDeLaVieActivity extends Activity
         dessin = new MaVue(this);
         setContentView(R.layout.activity_jeudelavie);
 
-        View view = findViewById(R.id.view);
+        Intent myIntent = getIntent();
 
-// page 4 dessin
+        int taille = Integer.valueOf(myIntent.getStringExtra("TailleGrille").substring(0, 2));
+        int proportion = Integer.valueOf((myIntent.getStringExtra("DensiteCellulesVivantes").toString())); // "java.lang.ClassCastException: android.text.SpannableString cannot be cast to java.lang.String" THERE IS A COMMAND FOR THAT THO
+
+        if (proportion > 100) proportion = 100;
+        if (proportion != 0 ) proportion = proportion / 100;
+
+        grilleJeuVie = FabGrille.creation(taille, proportion);
+
+        View view = findViewById(R.id.view);
 
         boolean[][] avtDernierTab = new boolean[2][2];
         boolean[][] dernierTab    = new boolean[2][3];
@@ -33,12 +43,18 @@ public class JeuDeLaVieActivity extends Activity
         while (nbTabPareil < 100)
         {
             grilleJeuVie.etatSuivant();
-            Cellule[] tabCellule = (Cellule[]) grilleJeuVie.getSetCellule().toArray();
+            Cellule[] tabCellule = new Cellule[grilleJeuVie.getSetCellule().size()];
+
+            if (grilleJeuVie.getSetCellule().toArray() instanceof Cellule[])
+                tabCellule = (Cellule[]) grilleJeuVie.getSetCellule().toArray();
+
+            int tailleRcnCarre = (int) Math.round(Math.sqrt(grilleJeuVie.getSetCellule().size()));
+            tableauJeuVie = new boolean[tailleRcnCarre][tailleRcnCarre];
             for (int lig = 0; lig < tableauJeuVie.length; lig++)
             {
                 for (int col = 0; col < tableauJeuVie.length; col++)
                 {
-                    tableauJeuVie[lig][col] = tabCellule[lig*9+col].getEtat();
+                    tableauJeuVie[lig][col] = tabCellule[lig*tailleRcnCarre+col].getEtat();
                 }
             }
 

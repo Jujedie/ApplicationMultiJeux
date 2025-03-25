@@ -2,7 +2,6 @@ package com.example.applicationmultijeux.jeudelavie;
 
 import com.example.applicationmultijeux.R;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AccueilJeuDeLaVieActivity extends Activity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AccueilJeuDeLaVieActivity extends AppCompatActivity
 {
     private Spinner spinnerTailleGrille;
 

@@ -4,7 +4,7 @@
     android:id="@+id/accueilJDLV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sombre"
 
     tools:context=".jeudelavie.AccueilJeuDeLaVieActivity">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="220dp"
-        android:background="@color/blue"/>
+        android:background="@color/violet"/>
 
     <TextView
         android:id="@+id/accueilJDLV1"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
         android:textStyle="bold"
         android:textSize="100px"
         android:text="@string/jeudelavie" />
@@ -87,8 +87,8 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/violet"
+        android:textColor="@color/sombre"
         android:text="@string/lancer" />
 
 </RelativeLayout>

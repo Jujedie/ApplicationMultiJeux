@@ -1,7 +1,5 @@
 package com.example.applicationmultijeux.tictactoe;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,27 +11,63 @@ import android.view.View;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 
-public class TicTacToeActivity extends Activity
+public class TicTacToeActivity extends AppCompatActivity
 {
     private VueMorpion vueMorpion;
+    String mode;
     int joueur;
-    int tailleGrille = 4;
-    char[][] grille = new char[this.tailleGrille][this.tailleGrille];
+    int tailleGrille;
+    char[][] grille;
     int nbCoups;
+    boolean interactionAutorisee = true;
+
+    int scoreJ1;
+    int scoreJ2;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        this.mode = intent.hasExtra("Solo") ? "Solo" : "1contre1";
+        this.tailleGrille = Integer.parseInt(intent.getStringExtra("TailleGrille").split("x")[0]);
+        this.grille = new char[this.tailleGrille][this.tailleGrille];
         this.joueur = 1;
         this.nbCoups = 0;
+        this.initGrille();
+
+        setContentView(new VueMorpion(this, this.grille));
+    }
+
+    private void initGrille()
+    {
         for (int i = 0; i < this.tailleGrille; i++) {
             for (int j = 0; j < this.tailleGrille; j++) {
                 grille[i][j] = ' ';
-
             }
         }
+    }
 
-        setContentView(new VueMorpion(this, this.grille));
+    public boolean getInteractionAutorisee()
+    {
+        return this.interactionAutorisee;
+    }
+
+    public void clickIA()
+    {
+        int lig = (int) (Math.random() * this.tailleGrille);;
+        int col = (int) (Math.random() * this.tailleGrille);;
+        while (this.grille[lig][col] != ' ')
+        {
+            lig = (int) (Math.random() * this.tailleGrille);
+            col = (int) (Math.random() * this.tailleGrille);
+        }
+        this.nbCoups++;
+        this.grille[lig][col] = 'X';
+        this.verifVictoire('X', lig, col);
+        this.joueur = 1;
+        this.interactionAutorisee = true;
     }
 
     public void click(int lig, int col)
@@ -41,85 +75,63 @@ public class TicTacToeActivity extends Activity
         if (this.grille[lig][col] == ' ')
         {
             this.nbCoups++;
-            if (this.joueur == 1)
+            if (this.mode.equals("Solo"))
             {
                 this.grille[lig][col] = 'O';
-                this.joueur = 2;
                 this.verifVictoire('O', lig, col);
-
+                this.interactionAutorisee = false;
+                this.clickIA();
             }
-            else if (this.joueur == 2)
+            else if (this.joueur == 1)
+            {
+                this.grille[lig][col] = 'O';
+                this.verifVictoire('O', lig, col);
+                this.joueur = 2;
+            }
+            else
             {
                 this.grille[lig][col] = 'X';
-                this.joueur = 1;
                 this.verifVictoire('X', lig, col);
+                this.joueur = 1;
             }
         }
     }
 
     public boolean verifVictoire(char cara, int lig, int col)
     {
-        boolean ligneGagne = true;
-        for (int j = 0; j < this.tailleGrille; j++)
+        int alignementNecessaire = 4;
+
+        if (this.tailleGrille < alignementNecessaire)
         {
-            if (this.grille[lig][j] != cara)
-            {
-                ligneGagne = false;
-                break;
-            }
+            alignementNecessaire = this.tailleGrille;
         }
-        if (ligneGagne)
+
+        if (verifAlignement(lig, 0, 0, 1, cara, alignementNecessaire))
         {
             Log.d("TAG", "Joueur " + cara +" gagne");
             return true;
         }
 
-        boolean colonneGagne = true;
-        for (int i = 0; i < this.tailleGrille; i++)
-        {
-            if (this.grille[i][col] != cara)
-            {
-                colonneGagne = false;
-                break;
-            }
-        }
-        if (colonneGagne)
+        if (verifAlignement(0, col, 1, 0, cara, alignementNecessaire))
         {
             Log.d("TAG", "Joueur " + cara +" gagne");
             return true;
         }
 
-        if (lig == col)
+        int departx = lig - Math.min(lig, col);
+        int departy = col - Math.min(lig, col);
+        if (verifAlignement(departx, departy, 1, 1, cara, alignementNecessaire))
         {
-            boolean diagonale1Gagne = true;
-            for (int i = 0; i < this.tailleGrille; i++)
-            {
-                if (this.grille[i][i] != cara)
-                {
-                    diagonale1Gagne = false;
-                    break;
-                }
-            }
-            if (diagonale1Gagne)
-            {
-                Log.d("TAG", "Joueur " + cara +" gagne");
-                return true;
-            }
+            Log.d("TAG", "Joueur " + cara +" gagne");
+            return true;
         }
 
-        if (lig + col == this.tailleGrille - 1) {
-            boolean diagonale2Gagne = true;
-            for (int i = 0; i < this.tailleGrille; i++) {
-                if (this.grille[i][this.tailleGrille - 1 - i] != cara) {
-                    diagonale2Gagne = false;
-                    break;
-                }
-            }
-            if (diagonale2Gagne)
-            {
-                Log.d("TAG", "Joueur " + cara +" gagne");
-                return true;
-            }
+        departx = lig - Math.min(lig, this.tailleGrille - 1 - col);
+        departy = col + Math.min(lig, this.tailleGrille - 1 - col);
+        if (verifAlignement(departx, departy, 1, -1, cara, alignementNecessaire))
+        {
+            Log.d("TAG", "Joueur " + cara +" gagne");
+            return true;
         }
 
         if (this.nbCoups == Math.pow(this.tailleGrille, 2))
@@ -129,7 +141,38 @@ public class TicTacToeActivity extends Activity
 
         return false;
     }
+
+    private boolean verifAlignement(int xdepart, int ydepart, int xajout, int yajout, char cara, int alignement)
+    {
+        int compteur = 0;
+        while (xdepart >= 0 && xdepart < this.tailleGrille && ydepart >= 0 && ydepart < this.tailleGrille)
+        {
+            if (this.grille[xdepart][ydepart] == cara)
+            {
+                compteur ++;
+                if (compteur == alignement)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                compteur = 0;
+            }
+            xdepart += xajout;
+            ydepart += yajout;
+        }
+        return false;
+    }
+
+    private void finJeu()
+    {
+        this.interactionAutorisee = false;
+
+    }
 }
+
+
 
 
 class VueMorpion extends View
@@ -217,6 +260,10 @@ class VueMorpion extends View
 
     public boolean onTouchEvent(MotionEvent event)
     {
+        if (!((TicTacToeActivity) getContext()).getInteractionAutorisee())
+        {
+            return true;
+        }
         float x = event.getX();
         float y = event.getY();
 
