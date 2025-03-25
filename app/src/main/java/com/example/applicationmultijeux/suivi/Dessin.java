@@ -212,7 +212,6 @@ public class Dessin extends View {
         }
         if (nbLigneEnDehors == 0) {return 0;}
 
-        Log.d("DEBUG", "=======================================" + (int)(100 * ((double) nbLigneEnDehors / this.lignes.size())) + "=======================================");
         return  (int)(100 * ((double) nbLigneEnDehors / this.lignes.size()) * -1);
     }
 
