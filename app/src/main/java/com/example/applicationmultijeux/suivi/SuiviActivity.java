@@ -20,6 +20,8 @@ import com.example.applicationmultijeux.R;
 
 public class SuiviActivity extends AppCompatActivity implements SensorEventListener
 {
+    private static final int TIMER_TEMPS = 90;
+
     private Intent intent;
     private Dessin dessin;
     private int points;
@@ -59,7 +61,7 @@ public class SuiviActivity extends AppCompatActivity implements SensorEventListe
             sensorManager.registerListener(this, accelerometre, SensorManager.SENSOR_DELAY_FASTEST);
         }
 
-        Timer timerGame = new Timer(90, this);
+        Timer timerGame = new Timer(SuiviActivity.TIMER_TEMPS, this);
         timerGame.start();
     }
 
