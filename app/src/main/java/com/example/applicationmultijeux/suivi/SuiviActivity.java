@@ -1,13 +1,15 @@
 package com.example.applicationmultijeux.suivi;
 
-
-
 import android.content.Intent;
+
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.hardware.Sensor;
+
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.OrientationEventListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,14 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.applicationmultijeux.MainActivity;
 import com.example.applicationmultijeux.R;
 
-public class SuiviActivity extends AppCompatActivity
+public class SuiviActivity extends AppCompatActivity implements SensorEventListener
 {
     private Intent intent;
     private Dessin dessin;
-    private int orientation;
     private int points;
-    private Handler handler;
-    private Runnable runnable;
+    private SensorManager sensorManager;
+    private Sensor accelerometre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class SuiviActivity extends AppCompatActivity
         setContentView(R.layout.activity_suivi);
 
         this.points = 100;
-        this.orientation = 1;
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -51,46 +51,42 @@ public class SuiviActivity extends AppCompatActivity
         this.dessin.setNiveau(niveau);
         this.dessin.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, (int) (screenHeight * 0.8)));
 
-        Timer timerGame = new Timer(60, this);
-        timerGame.start();
+        sensorManager   = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accelerometre = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        OrientationEventListener mOrientationListener = new OrientationEventListener(getApplicationContext())
+        if (accelerometre != null)
         {
-            @Override
-            public void onOrientationChanged(int orientation)
-            {
-                if (orientation != ORIENTATION_UNKNOWN) {
-                    SuiviActivity.this.orientation = orientation;
-                }
-            }
-        };
-
-        if (mOrientationListener.canDetectOrientation()) {
-            mOrientationListener.enable();
+            sensorManager.registerListener(this, accelerometre, SensorManager.SENSOR_DELAY_FASTEST);
         }
 
-
-        handler = new Handler();
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                dessin.ajouterLigne(orientation);
-                handler.postDelayed(this, 55);
-            }
-        };
-        handler.post(runnable);
+        Timer timerGame = new Timer(3, this);
+        timerGame.start();
     }
+
+    @Override
+    public void onSensorChanged(SensorEvent event)
+    {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+        {
+            float[] values = event.values;
+
+            this.dessin.ajouterLigne(values[0],values[1]);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {}
 
     @Override
     protected void onPause() {
         super.onPause();
-        handler.removeCallbacks(runnable);
+        this.sensorManager.unregisterListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        handler.post(runnable);
+        sensorManager.registerListener(this, accelerometre, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     public void finirPartie() {
@@ -98,7 +94,7 @@ public class SuiviActivity extends AppCompatActivity
         this.points += malus;
         Log.d("RESULTAT", "Points malus : " + malus);
 
-        Intent resultIntent = new Intent();
+        Intent resultIntent = new Intent(SuiviActivity.this,MainActivity.class);
         resultIntent.putExtra("Score", this.points);
 
         setResult(MainActivity.RESULT_OK, resultIntent);

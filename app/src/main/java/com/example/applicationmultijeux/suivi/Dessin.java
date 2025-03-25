@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Dessin extends View {
     private static Paint peintureLigne;
-    private static final int LONGUEUR_LIGNE = 7;
+    private static final int LONGUEUR_LIGNE = 3;
 
     private Paint peinture;
     private int couleur = 0xFFBB86FC;
@@ -138,12 +138,10 @@ public class Dessin extends View {
         return epaisseur;
     }
 
-    public void ajouterLigne(int orientation) {
+    public void ajouterLigne(float x, float y) {
         if (this.startX != -1 && this.startY != -1) {
-            Log.d("DEBUG","Start("+startX+", "+startY+")");
-
-            float endX = (float) (startX + Dessin.LONGUEUR_LIGNE * Math.cos(Math.toRadians(orientation)));
-            float endY = (float) (startY + Dessin.LONGUEUR_LIGNE * Math.sin(Math.toRadians(orientation)));
+            float endX = startX + x;
+            float endY = startY + y;
 
             endX = Math.max(0, Math.min(endX, getWidth()));
             endY = Math.max(0, Math.min(endY, getHeight()));
@@ -176,10 +174,23 @@ public class Dessin extends View {
                     }
                 }
             }
-        } else if (this.forme.equals("Triangle")) {
 
+            Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
+            return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
+        } else if (this.forme.equals("Triangle")) {
+            for (float[] ligne : this.lignes)
+            {
+                for (int numPoint = 0; numPoint <= 1; numPoint++)
+                {
+
+                }
+            }
+
+            Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
+            return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
         }
 
-        return (int) (100 * (nbLigneEnDehors / this.lignes.size()));
+
+        return 0;
     }
 }
