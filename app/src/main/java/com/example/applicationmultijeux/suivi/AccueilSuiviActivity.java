@@ -12,12 +12,15 @@ import android.widget.Spinner;
 
 public class AccueilSuiviActivity extends Activity
 {
+    private Spinner spinnerForme;
+    private Spinner spinnerDifficulte;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil_suivi);
 
-        Spinner spinner = (Spinner) findViewById(R.id.accueilSuivi3);
+        spinnerForme = (Spinner) findViewById(R.id.accueilSuivi3);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
             this,
@@ -26,9 +29,9 @@ public class AccueilSuiviActivity extends Activity
         );
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerForme.setAdapter(adapter);
 
-        spinner = (Spinner) findViewById(R.id.accueilSuivi5);
+        spinnerDifficulte = (Spinner) findViewById(R.id.accueilSuivi5);
         adapter = ArrayAdapter.createFromResource
         (
             this,
@@ -37,7 +40,7 @@ public class AccueilSuiviActivity extends Activity
         );
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerDifficulte.setAdapter(adapter);
 
         lancerSuivi();
     }
@@ -51,6 +54,8 @@ public class AccueilSuiviActivity extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(AccueilSuiviActivity.this, SuiviActivity.class);
+                intent.putExtra("forme", (String) (spinnerForme.getSelectedItem()));
+                intent.putExtra("difficulte", (String) (spinnerDifficulte.getSelectedItem()));
                 startActivity(intent);
             }
         });
