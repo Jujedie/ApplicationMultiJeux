@@ -8,17 +8,11 @@
 
     tools:context=".jeudelavie.AccueilJeuDeLaVieActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="220dp"
-        android:background="@color/violet"/>
-
     <TextView
         android:id="@+id/accueilJDLV1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textAlignment="center"
@@ -32,11 +26,11 @@
         android:layout_below="@id/accueilJDLV1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:text="@string/tailleGrille" />
@@ -48,7 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp" />
+        android:layout_marginRight="100dp"
+        android:backgroundTint="@color/violet"
+        android:popupBackground="@color/violet" />
 
     <TextView
         android:id="@+id/accueilJDLV4"
@@ -59,7 +55,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:text="Cellules vivantes :" />
@@ -73,7 +69,9 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/clair"
+        android:textColorHint="@color/gris_clair"
+        android:backgroundTint="@color/violet"
         android:textStyle="bold"
         android:textSize="40px"
         android:hint="Densité en %"
