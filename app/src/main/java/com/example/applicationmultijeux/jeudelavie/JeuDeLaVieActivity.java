@@ -23,7 +23,6 @@ public class JeuDeLaVieActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         dessin = new MaVue(this);
-        setContentView(R.layout.activity_jeudelavie);
 
         Intent myIntent = getIntent();
 
@@ -87,6 +86,7 @@ public class JeuDeLaVieActivity extends AppCompatActivity
         }
 
 
+        setContentView(dessin);
     }
 
     class MaVue extends View
