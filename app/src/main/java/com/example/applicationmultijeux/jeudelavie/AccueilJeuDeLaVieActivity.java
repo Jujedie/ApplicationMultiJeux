@@ -80,7 +80,7 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
                 }
                 else
                 {
-                    intent.putExtra("DensiteCellulesVivantes", edtDensite.getText());
+                    intent.putExtra("DensiteCellulesVivantes", edtDensite.getText().toString());
                 }
 
                 startActivity(intent);
