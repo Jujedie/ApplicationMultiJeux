@@ -54,8 +54,8 @@ public class AccueilSuiviActivity extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(AccueilSuiviActivity.this, SuiviActivity.class);
-                intent.putExtra("forme", (String) (spinnerForme.getSelectedItem()));
-                intent.putExtra("difficulte", (String) (spinnerDifficulte.getSelectedItem()));
+                intent.putExtra("forme", (String) spinnerForme.getSelectedItem());
+                intent.putExtra("difficulte", (String) spinnerDifficulte.getSelectedItem());
                 startActivity(intent);
             }
         });
