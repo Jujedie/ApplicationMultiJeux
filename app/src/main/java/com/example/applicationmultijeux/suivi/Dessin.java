@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -28,17 +29,22 @@ public class Dessin extends View {
     private SuiviActivity suiviActiv;
 
 
-    public Dessin(Context context, SuiviActivity suiviActiv)
+    protected Dessin(Context context, AttributeSet attrs)
     {
-        super(context);
-        suiviActiv = null;
+        super(context, attrs);
+        Log.d("DEBUG","TEST - SUCCES");
+        init();
+    }
+
+    protected void init() {
+        this.suiviActiv = null;
 
         this.startX = -1;
         this.startY = -1;
 
         this.forme = null;
-        this.niveau= null;
-        this.lignes= new ArrayList<>();
+        this.niveau = null;
+        this.lignes = new ArrayList<>();
 
         initStylePeinture();
     }
@@ -74,9 +80,9 @@ public class Dessin extends View {
     @Override
     protected void onDraw(Canvas canvas)
     {
+        super.onDraw(canvas);
         if (this.forme != null && this.niveau != null)
         {
-            super.onDraw(canvas);
             int largeur    = getWidth();
             int hauteur    = getHeight();
             this.epaisseur = getEpaisseur(this.niveau);
@@ -125,7 +131,7 @@ public class Dessin extends View {
 
             for(float[] ligne : this.lignes)
             {
-                canvas.drawLine(ligne[0],ligne[1],ligne[2],ligne[3],this.peinture);
+                canvas.drawLine(ligne[0],ligne[1],ligne[2],ligne[3],Dessin.peintureLigne);
             }
         }
     }
@@ -145,7 +151,8 @@ public class Dessin extends View {
         return epaisseur;
     }
 
-    public void ajouterLigne(float deltaX, float deltaY) {
+    public void ajouterLigne(float deltaX, float deltaY)
+    {
         if (this.startX != -1 && this.startY != -1)
         {
             float endX = this.startX + deltaX * Dessin.LONGUEUR_LIGNE;

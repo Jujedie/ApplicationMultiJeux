@@ -1,6 +1,6 @@
 package com.example.applicationmultijeux.suivi;
 
-import android.app.Activity;
+import static com.example.applicationmultijeux.R.*;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,14 +11,16 @@ import android.os.Bundle;
 
 import android.content.Intent;
 import android.util.DisplayMetrics;
-import android.view.ViewGroup;
+import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.applicationmultijeux.MainActivity;
 import com.example.applicationmultijeux.R;
 
 
-public class SuiviActivity extends Activity implements SensorEventListener {
+public class SuiviActivity extends AppCompatActivity implements SensorEventListener {
     private Intent        intent;
 
     private Dessin        dessin;
@@ -39,25 +41,26 @@ public class SuiviActivity extends Activity implements SensorEventListener {
         int screenHeight = displayMetrics.heightPixels;
 
         TextView timer = findViewById(R.id.Timer);
-        timer.setLayoutParams(new ViewGroup.LayoutParams(screenWidth ,(int)(screenHeight*0.2)));
+        timer.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, (int) (screenHeight * 0.2)));
 
-        sensorManager   = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         if (gyroscopeSensor != null) {
             sensorManager.registerListener(this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
 
-        this.intent   = getIntent();
-        String forme  = intent.getStringExtra("forme");
+        this.intent = getIntent();
+        String forme = intent.getStringExtra("forme");
         String niveau = intent.getStringExtra("difficulte");
 
-        this.dessin = findViewById(R.id.Dessin);
+        this.dessin = (Dessin) findViewById(id.Dessin);
         this.dessin.setForme(forme);
         this.dessin.setNiveau(niveau);
-        this.dessin.setLayoutParams(new ViewGroup.LayoutParams(screenWidth ,(int)(screenHeight*0.8)));
+        this.dessin.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, (int) (screenHeight * 0.8)));
 
         Timer timerGame = new Timer(60, this);
-        timerGame.run();
+        timerGame.start();
+        Log.d("SuiviActivity", "onCreate: Fin de onCreate");
     }
 
     @Override
@@ -66,7 +69,7 @@ public class SuiviActivity extends Activity implements SensorEventListener {
             float deltaX = event.values[0];
             float deltaY = event.values[1];
 
-            this.dessin.ajouterLigne(deltaX,deltaY);
+            //this.dessin.ajouterLigne(deltaX,deltaY);
         }
     }
 
