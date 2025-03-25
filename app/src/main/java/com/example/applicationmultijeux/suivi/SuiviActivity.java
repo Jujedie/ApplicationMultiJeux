@@ -91,8 +91,6 @@ public class SuiviActivity extends AppCompatActivity
         handler.post(runnable);
     }
 
-    public void onDeleted() {}
-
     public void finirPartie() {
         int malus = this.dessin.getPointMalus();
         this.points += malus;

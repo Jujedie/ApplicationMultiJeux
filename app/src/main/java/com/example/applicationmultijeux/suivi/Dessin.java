@@ -16,7 +16,7 @@ public class Dessin extends View {
     private static final int LONGUEUR_LIGNE = 7;
 
     private Paint peinture;
-    private int couleur = 0xFFFFFF00;
+    private int couleur = 0xFFBB86FC;
     private int epaisseur = 10;
 
     private int startX;
@@ -45,7 +45,7 @@ public class Dessin extends View {
         this.lignes = new ArrayList<>();
 
         Dessin.peintureLigne = new Paint();
-        this.peintureLigne.setColor(0xFFFF0000);
+        this.peintureLigne.setColor(0xFFD32F2F);
         this.peintureLigne.setStyle(Paint.Style.STROKE);
         this.peintureLigne.setStrokeWidth(20F);
 
@@ -59,21 +59,6 @@ public class Dessin extends View {
         this.peinture.setStrokeWidth((float) (this.epaisseur));
     }
 
-    public Paint getPeinture() {
-        return this.peinture;
-    }
-
-    public int getCouleur() {
-        return this.couleur;
-    }
-
-    public String getForme() {
-        return this.forme;
-    }
-
-    public String getNiveau() {
-        return this.niveau;
-    }
 
     public void setCouleur(int couleur) {
         this.couleur = couleur;
@@ -102,9 +87,10 @@ public class Dessin extends View {
                 canvas.drawCircle(largeur / 2, hauteur / 2, rayon, this.peinture);
 
                 if (this.startY == -1 || this.startX == -1) {
-                    float rayonAjuste = rayon + this.epaisseur / 2;
-                    this.startX = (int) (rayonAjuste * Math.cos(180));
-                    this.startY = (int) (rayonAjuste * Math.sin(180));
+                    this.startX = largeur / 2;
+                    this.startY = hauteur / 2 - rayon;
+                    if (startY < 0){startY = startY * -1;}
+                    if (startX < 0){startX = startX * -1;}
                 }
             } else if (this.forme.equals("Triangle")) {
                 Path path = new Path();
@@ -154,6 +140,7 @@ public class Dessin extends View {
 
     public void ajouterLigne(int orientation) {
         if (this.startX != -1 && this.startY != -1) {
+            Log.d("DEBUG","Start("+startX+", "+startY+")");
 
             float endX = (float) (startX + Dessin.LONGUEUR_LIGNE * Math.cos(Math.toRadians(orientation)));
             float endY = (float) (startY + Dessin.LONGUEUR_LIGNE * Math.sin(Math.toRadians(orientation)));

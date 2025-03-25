@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/sombre"
     tools:context=".suivi.SuiviActivity">
 
     <TextView
         android:id="@+id/Timer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Temps restant : 00:00"
-        android:background="@color/clair"
+        android:background="@color/violet"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
