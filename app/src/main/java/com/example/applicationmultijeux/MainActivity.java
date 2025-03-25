@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,33 @@ public class MainActivity extends AppCompatActivity
         quitterApplication();
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2 && resultCode == RESULT_OK)
+        {
+            if (data != null && data.hasExtra("ScoreTicTacToe"))
+            {
+                int score = data.getIntExtra("ScoreTicTacToe", 0);
+                TextView txtScore = findViewById(R.id.main6);
+                txtScore.setText("Jeu du TicTacToe : " + String.valueOf(score) + "a gagné");
+            }
+            if (data != null && data.hasExtra("ScoreJDLV"))
+            {
+                int score = data.getIntExtra("ScoreJDLV", 0);
+                TextView txtScore = findViewById(R.id.main6);
+                txtScore.setText("Jeu de la vie : " + String.valueOf(score) + " itérations");
+            }
+            if (data != null && data.hasExtra("ScoreSuivi"))
+            {
+                int score = data.getIntExtra("ScoreSuivi", 0);
+                TextView txtScore = findViewById(R.id.main6);
+                txtScore.setText("Jeu du suivi : " + String.valueOf(score) + "%");
+            }
+        }
+    }
+
     public void accueilTicTacToe()
     {
         Button btnAccueilTicTacToe = findViewById(R.id.main2);
@@ -33,7 +61,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, AccueilTicTacToeActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
             }
         });
     }
@@ -47,7 +75,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, AccueilJeuDeLaVieActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
             }
         });
     }
@@ -61,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, AccueilSuiviActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
             }
         });
     }

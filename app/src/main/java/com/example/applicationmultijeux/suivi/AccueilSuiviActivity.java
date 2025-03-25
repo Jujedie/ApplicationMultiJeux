@@ -24,6 +24,32 @@ public class AccueilSuiviActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil_suivi);
 
+        spinnerForme();
+        spinnerDifficulte();
+        lancerSuivi();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK)
+        {
+            if (data != null && data.hasExtra("ScoreSuivi"))
+            {
+                int score = data.getIntExtra("ScoreSuivi", 0);
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("ScoreSuivi", score);
+                setResult(RESULT_OK, returnIntent);
+
+                finish();
+            }
+        }
+    }
+
+    public void spinnerForme()
+    {
         spinnerForme = (Spinner) findViewById(R.id.accueilSuivi3);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
@@ -58,9 +84,12 @@ public class AccueilSuiviActivity extends AppCompatActivity
                 public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
+    }
 
+    public void spinnerDifficulte()
+    {
         spinnerDifficulte = (Spinner) findViewById(R.id.accueilSuivi5);
-        adapter = ArrayAdapter.createFromResource
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
             this,
             R.array.listeNiveau,
@@ -93,8 +122,6 @@ public class AccueilSuiviActivity extends AppCompatActivity
                 public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
-
-        lancerSuivi();
     }
 
     public void lancerSuivi()
@@ -108,7 +135,7 @@ public class AccueilSuiviActivity extends AppCompatActivity
                 Intent intent = new Intent(AccueilSuiviActivity.this, SuiviActivity.class);
                 intent.putExtra("forme", (String) spinnerForme.getSelectedItem());
                 intent.putExtra("difficulte", (String) spinnerDifficulte.getSelectedItem());
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }

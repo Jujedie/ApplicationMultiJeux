@@ -24,6 +24,31 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil_jeudelavie);
 
+        spinnerTailleGrille();
+        lancerJeuDeLaVie();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK)
+        {
+            if (data != null && data.hasExtra("ScoreJDLV"))
+            {
+                int score = data.getIntExtra("ScoreJDLV", 0);
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("ScoreJDLV", score);
+                setResult(RESULT_OK, returnIntent);
+
+                finish();
+            }
+        }
+    }
+
+    public void spinnerTailleGrille()
+    {
         spinnerTailleGrille = (Spinner) findViewById(R.id.accueilJDLV3);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
@@ -58,8 +83,6 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
                 public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
-
-        lancerJeuDeLaVie();
     }
 
     public void lancerJeuDeLaVie()
@@ -83,7 +106,7 @@ public class AccueilJeuDeLaVieActivity extends AppCompatActivity
                     intent.putExtra("DensiteCellulesVivantes", edtDensite.getText().toString());
                 }
 
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }

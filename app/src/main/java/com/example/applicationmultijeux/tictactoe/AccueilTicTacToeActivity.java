@@ -1,7 +1,6 @@
 package com.example.applicationmultijeux.tictactoe;
 
 import com.example.applicationmultijeux.R;
-import com.example.applicationmultijeux.suivi.AccueilSuiviActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +23,31 @@ public class AccueilTicTacToeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil_tictactoe);
 
+        spinnerTailleGrille();
+        lancerTicTacToe();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK)
+        {
+            if (data != null && data.hasExtra("ScoreTicTacToe"))
+            {
+                int score = data.getIntExtra("ScoreTicTacToe", 0);
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("ScoreTicTacToe", score);
+                setResult(RESULT_OK, returnIntent);
+
+                finish();
+            }
+        }
+    }
+
+    public void spinnerTailleGrille()
+    {
         spinnerTailleGrille = (Spinner) findViewById(R.id.accueilTicTacToe5);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
         (
@@ -58,8 +82,6 @@ public class AccueilTicTacToeActivity extends AppCompatActivity
                 public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
-
-        lancerTicTacToe();
     }
 
     public void lancerTicTacToe()
@@ -85,7 +107,7 @@ public class AccueilTicTacToeActivity extends AppCompatActivity
                 Intent intent = new Intent(AccueilTicTacToeActivity.this, TicTacToeActivity.class);
                 intent.putExtra("1contre1", "1contre1");
                 intent.putExtra("TailleGrille", (String) spinnerTailleGrille.getSelectedItem());
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }
