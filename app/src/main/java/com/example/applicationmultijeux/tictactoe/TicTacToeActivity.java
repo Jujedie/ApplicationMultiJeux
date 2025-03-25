@@ -1,10 +1,13 @@
 package com.example.applicationmultijeux.tictactoe;
 
+
+import com.example.applicationmultijeux.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -12,25 +15,38 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class TicTacToeActivity extends AppCompatActivity
 {
     //SI ON EST EN MODE SOLO, LE JOUEUR IA A POUR ID 2
-    private VueMorpion vueMorpion;
-    String mode;
-    Joueur j1;
-    Joueur j2;
-    Joueur jCourant;
-    int tailleGrille;
-    char[][] grille;
-    int nbCoups;
-    int nbParties;
-    boolean interactionAutorisee = true;
+
+    private TextView msgFin;
+    private TextView score;
+    private Button btnRejouer;
+
+    private String mode;
+    private Joueur j1;
+    private Joueur j2;
+    private Joueur jCourant;
+    private int tailleGrille;
+    private char[][] grille;
+    private int nbCoups;
+    private int nbParties;
+    private boolean interactionAutorisee = true;
 
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tictactoe);
+        this.msgFin = findViewById(R.id.msgFin);
+        this.score = findViewById(R.id.score);
+        this.btnRejouer = findViewById(R.id.btnRejouer);
+
+
 
         Intent intent = getIntent();
 
@@ -46,9 +62,6 @@ public class TicTacToeActivity extends AppCompatActivity
         this.grille = new char[this.tailleGrille][this.tailleGrille];
 
         this.nouvellePartie();
-        setContentView(new VueMorpion(this, this.grille));
-
-
     }
 
     private void nouvellePartie()
@@ -68,8 +81,14 @@ public class TicTacToeActivity extends AppCompatActivity
         }
         this.initGrille();
         this.jCourant = this.j1;
-        Log.d("TAG", this.jCourant.getSymbole() + "");
         this.nbParties ++;
+
+        String scorej1j2 = "Score Joueur 1 (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Joueur 2 (" + this.j2.getSymbole() + ") : " + this.j1.getScore();
+        this.score.setText(scorej1j2);
+        this.msgFin.setText("");
+        this.btnRejouer.setVisibility(View.GONE);
+        VueMorpion vueMorpion = findViewById(R.id.vueMorpion);
+        vueMorpion.invalidate();
 
     }
 
@@ -80,6 +99,11 @@ public class TicTacToeActivity extends AppCompatActivity
                 grille[i][j] = ' ';
             }
         }
+    }
+
+    public char[][] getGrille()
+    {
+        return this.grille;
     }
 
     public boolean getInteractionAutorisee()
@@ -208,28 +232,33 @@ public class TicTacToeActivity extends AppCompatActivity
 class VueMorpion extends View
 {
     Paint paint = new Paint();
-    private final char[][] grille;
+    private char[][] grille;
     private int tailleGrille;
     private int margeLargeur;
     private int margeHauteur;
     private int nbLignes;
-    public VueMorpion(Context context, char[][] grille)
+    public VueMorpion(Context context, AttributeSet attrs)
     {
-        super(context);
-        this.grille = grille;
+        super(context, attrs);
+
 
     }
     public void onDraw(Canvas canvas)
     {
         super.onDraw(canvas);
-        canvas.drawColor(Color.WHITE);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(10f);
-        this.tailleGrille = Math.min(getWidth(), getHeight()) - 200;
-        this.margeLargeur = (getWidth() - tailleGrille)/2;
-        this.margeHauteur = (getHeight() - tailleGrille)/2;
-        this.nbLignes = grille.length;
-        this.dessinerGrille(canvas, this.grille);
+        if (((TicTacToeActivity) getContext()).getGrille() != null)
+        {
+            this.grille = ((TicTacToeActivity) getContext()).getGrille();
+            canvas.drawColor(Color.WHITE);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(10f);
+            this.tailleGrille = Math.min(getWidth(), getHeight()) - 200;
+            this.margeLargeur = (getWidth() - tailleGrille)/2;
+            this.margeHauteur = (getHeight() - tailleGrille)/2;
+            this.nbLignes = grille.length;
+            this.dessinerGrille(canvas, this.grille);
+        }
+
     }
     public void dessinerO(Canvas canvas, int x, int y, int taille)
     {
