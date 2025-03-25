@@ -172,16 +172,16 @@ public class Dessin extends View {
         
         if (this.forme.equals("Cercle"))
         {
-            int rayon      = Math.min(largeur, hauteur) / 3;
-            int rayonCarre = rayon * rayon;
-            
+            int rayon = Math.min(largeur, hauteur) / 3;
             
             for(float[] ligne : this.lignes)
             {
-                for(int numPoint = 0; numPoint <= 1; numPoint++) {
+                for(int numPoint = 0; numPoint <= 1; numPoint++)
+                {
                     double d = Math.pow(ligne[0] - largeur / 2, 2) + Math.pow(ligne[1] - hauteur / 2, 2);
 
-                    if (!(Math.pow(rayon-(this.getEpaisseur()/2),2) <= Math.pow(d,2) && Math.pow(d,2) <= Math.pow(rayon+(this.getEpaisseur()/2),2) )) {
+                    if (!( Math.pow(rayon-(this.getEpaisseur()/2),2) <= Math.pow(d,2) && Math.pow(d,2) <= Math.pow(rayon+(this.getEpaisseur()/2),2) ))
+                    {
                         nbLigneEnDehors++;
                         break;
                     }
