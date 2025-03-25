@@ -1,6 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/msgFin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:layout_below="@id/msgFin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <com.example.applicationmultijeux.tictactoe.VueMorpion
+        android:id="@+id/vueMorpion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/score"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <Button
+        android:id="@+id/btnRejouer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rejouer"
+        android:layout_below="@id/vueMorpion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>
