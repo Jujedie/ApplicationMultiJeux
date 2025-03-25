@@ -95,7 +95,7 @@ public class SuiviActivity extends AppCompatActivity implements SensorEventListe
         Log.d("RESULTAT", "Points malus : " + malus);
 
         Intent resultIntent = new Intent(SuiviActivity.this,MainActivity.class);
-        resultIntent.putExtra("Score", this.points);
+        resultIntent.putExtra("ScoreSuivi", this.points);
 
         setResult(MainActivity.RESULT_OK, resultIntent);
         finish();

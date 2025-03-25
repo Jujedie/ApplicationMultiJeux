@@ -178,19 +178,59 @@ public class Dessin extends View {
             Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
             return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
         } else if (this.forme.equals("Triangle")) {
-            for (float[] ligne : this.lignes)
-            {
-                for (int numPoint = 0; numPoint <= 1; numPoint++)
-                {
 
+            float[] p1 = {largeur / 2, 65};
+            float[] p2 = {65, hauteur - 65};
+            float[] p3 = {largeur - 65, hauteur - 65};
+
+            for (float[] ligne : this.lignes) {
+                for (int numPoint = 0; numPoint <= 1; numPoint++) {
+                    float x = ligne[numPoint * 2];
+                    float y = ligne[numPoint * 2 + 1];
+
+                    if (!isPointInTriangle(x, y, p1, p2, p3)) {
+                        nbLigneEnDehors++;
+                        break;
+                    }
                 }
             }
 
             Log.d("DEBUG","======================================="+(int) (100 * (nbLigneEnDehors / this.lignes.size()))+"=======================================");
             return (int) (100 * (nbLigneEnDehors / this.lignes.size()) * -1);
+        }else if (this.forme.equals("Carré")) {
+
+            int longueurCote = Math.min(largeur, hauteur) - 65;
+
+            for (float[] ligne : this.lignes) {
+                for (int numPoint = 0; numPoint <= 1; numPoint++) {
+                    float x = ligne[numPoint * 2];
+                    float y = ligne[numPoint * 2 + 1];
+
+                    if (x < 65 || x > longueurCote || y < 65 || y > longueurCote) {
+                        nbLigneEnDehors++;
+                        break;
+                    }
+                }
+            }
+
+            Log.d("DEBUG", "=======================================" + (int) (100 * ((double) nbLigneEnDehors / this.lignes.size())) + "=======================================");
+            return (int) (100 * ((double) nbLigneEnDehors / this.lignes.size()) * -1);
         }
-
-
         return 0;
+    }
+
+    private boolean isPointInTriangle(float x, float y, float[] p1, float[] p2, float[] p3) {
+        float d1 = sign(x, y, p1[0], p1[1], p2[0], p2[1]);
+        float d2 = sign(x, y, p2[0], p2[1], p3[0], p3[1]);
+        float d3 = sign(x, y, p3[0], p3[1], p1[0], p1[1]);
+
+        boolean hasNeg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        boolean hasPos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(hasNeg && hasPos);
+    }
+
+    private float sign(float x1, float y1, float x2, float y2, float x3, float y3) {
+        return (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3);
     }
 }
