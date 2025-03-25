@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
             {
                 int score = data.getIntExtra("ScoreJDLV", 0);
                 TextView txtScore = findViewById(R.id.main6);
-                txtScore.setText("Jeu de la vie : " + String.valueOf(score) + " itérations");
+                txtScore.setText("Jeu de la vie : " + String.valueOf(score) + " itération(s)");
             }
             if (data != null && data.hasExtra("ScoreSuivi"))
             {
