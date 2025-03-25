@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
             {
                 int score = data.getIntExtra("ScoreTicTacToe", 0);
                 TextView txtScore = findViewById(R.id.main6);
-                txtScore.setText("Jeu du TicTacToe : " + String.valueOf(score) + "a gagné");
+                txtScore.setText("Jeu du TicTacToe : Vous avez gagné " + String.valueOf(score) + " fois en solo");
             }
             if (data != null && data.hasExtra("ScoreJDLV"))
             {
