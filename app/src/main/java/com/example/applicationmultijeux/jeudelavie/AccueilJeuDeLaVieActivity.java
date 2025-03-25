@@ -1,8 +1,6 @@
 package com.example.applicationmultijeux.jeudelavie;
 
 import com.example.applicationmultijeux.R;
-import com.example.applicationmultijeux.tictactoe.AccueilTicTacToeActivity;
-import com.example.applicationmultijeux.tictactoe.TicTacToeActivity;
 
 import android.app.Activity;
 import android.content.Intent;

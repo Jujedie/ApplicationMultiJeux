@@ -1,8 +1,6 @@
 package com.example.applicationmultijeux.suivi;
 
 import com.example.applicationmultijeux.R;
-import com.example.applicationmultijeux.jeudelavie.AccueilJeuDeLaVieActivity;
-import com.example.applicationmultijeux.jeudelavie.JeuDeLaVieActivity;
 
 import android.app.Activity;
 import android.content.Intent;
