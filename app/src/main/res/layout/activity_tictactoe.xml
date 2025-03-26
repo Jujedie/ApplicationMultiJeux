@@ -31,6 +31,13 @@
         android:text="Rejouer"
         android:layout_marginTop="20dp"/>
 
+    <Button
+        android:id="@+id/btnQuitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quitter"
+        android:layout_marginTop="20dp"/>
+
     <com.example.applicationmultijeux.tictactoe.VueMorpion
         android:id="@+id/vueMorpion"
         android:layout_width="wrap_content"

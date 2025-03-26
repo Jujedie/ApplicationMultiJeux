@@ -1,7 +1,10 @@
 package com.example.applicationmultijeux.tictactoe;
 
 
+import com.example.applicationmultijeux.MainActivity;
 import com.example.applicationmultijeux.R;
+import com.example.applicationmultijeux.suivi.SuiviActivity;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -26,6 +29,7 @@ public class TicTacToeActivity extends AppCompatActivity
     private TextView msgFin;
     private TextView score;
     private Button btnRejouer;
+    private Button btnQuitter;
 
     private String mode;
     private Joueur j1;
@@ -46,6 +50,9 @@ public class TicTacToeActivity extends AppCompatActivity
         this.score = findViewById(R.id.score);
         this.btnRejouer = findViewById(R.id.btnRejouer);
         this.btnRejouer.setOnClickListener(v -> nouvellePartie());
+
+        this.btnQuitter = findViewById(R.id.btnQuitter);
+        this.btnQuitter.setOnClickListener(v -> quitter());
 
         this.msgFin.setText("Touchez la grille pour commencer");
 
@@ -93,6 +100,19 @@ public class TicTacToeActivity extends AppCompatActivity
         vueMorpion.invalidate();
         this.interactionAutorisee = true;
 
+    }
+
+    public void quitter()
+    {
+        if (this.mode.equals("Solo"))
+        {
+            Intent resultIntent = new Intent(TicTacToeActivity.this, MainActivity.class);
+            resultIntent.putExtra("ScoreTicTacToe", this.j1.getScore());
+
+            setResult(MainActivity.RESULT_OK, resultIntent);
+        }
+
+        finish();
     }
 
     private void initGrille()
