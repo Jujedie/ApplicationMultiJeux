@@ -87,17 +87,7 @@ public class TicTacToeActivity extends AppCompatActivity
         this.jCourant = this.j1;
         this.nbParties ++;
 
-        String scorej1j2;
-        if (this.mode.equals("Solo"))
-        {
-            scorej1j2 = "Votre Score (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Ordinateur (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
-        }
-        else
-        {
-            scorej1j2 = "Score Joueur 1 (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Joueur 2 (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
 
-        }
-        this.score.setText(scorej1j2);
         this.btnRejouer.setEnabled(false);
         VueMorpion vueMorpion = findViewById(R.id.vueMorpion);
         vueMorpion.invalidate();
@@ -126,18 +116,22 @@ public class TicTacToeActivity extends AppCompatActivity
 
     public void clickIA()
     {
-        int lig = (int) (Math.random() * this.tailleGrille);;
-        int col = (int) (Math.random() * this.tailleGrille);;
-        while (this.grille[lig][col] != ' ')
+        if (this.nbCoups != Math.pow(this.tailleGrille, 2))
         {
-            lig = (int) (Math.random() * this.tailleGrille);
-            col = (int) (Math.random() * this.tailleGrille);
+            int lig = (int) (Math.random() * this.tailleGrille);;
+            int col = (int) (Math.random() * this.tailleGrille);;
+            while (this.grille[lig][col] != ' ')
+            {
+                lig = (int) (Math.random() * this.tailleGrille);
+                col = (int) (Math.random() * this.tailleGrille);
+            }
+            this.nbCoups++;
+            this.grille[lig][col] = this.jCourant.getSymbole();
+            this.verifVictoire(this.jCourant.getSymbole(), lig, col);
+            this.jCourant = this.j1;
+            this.interactionAutorisee = true;
         }
-        this.nbCoups++;
-        this.grille[lig][col] = this.jCourant.getSymbole();
-        this.verifVictoire(this.jCourant.getSymbole(), lig, col);
-        this.jCourant = this.j1;
-        this.interactionAutorisee = true;
+
     }
 
     public void click(int lig, int col)
@@ -261,6 +255,18 @@ public class TicTacToeActivity extends AppCompatActivity
         {
             msgFin = "Match nul";
         }
+
+        String scorej1j2;
+        if (this.mode.equals("Solo"))
+        {
+            scorej1j2 = "Votre Score (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Ordinateur (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
+        }
+        else
+        {
+            scorej1j2 = "Score Joueur 1 (" + this.j1.getSymbole() + ") : " + this.j1.getScore() + " | " + "Score Joueur 2 (" + this.j2.getSymbole() + ") : " + this.j2.getScore();
+
+        }
+        this.score.setText(scorej1j2);
 
         this.msgFin.setText(msgFin);
         this.btnRejouer.setEnabled(true);
