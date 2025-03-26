@@ -157,9 +157,10 @@ public class TicTacToeActivity extends AppCompatActivity
                 }
                 this.nbCoups++;
                 this.grille[lig][col] = this.jCourant.getSymbole();
+                this.verifVictoire(this.jCourant.getSymbole(), lig, col);
                 this.jCourant = this.j1;
                 this.interactionAutorisee = true;
-                this.verifVictoire(this.jCourant.getSymbole(), lig, col);
+
 
             }
         }
