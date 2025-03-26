@@ -40,6 +40,7 @@ public class TicTacToeActivity extends AppCompatActivity
     private int nbCoups;
     private int nbParties;
     private boolean interactionAutorisee = true;
+    private boolean stopIA;
 
 
     protected void onCreate(Bundle savedInstanceState)
@@ -91,6 +92,7 @@ public class TicTacToeActivity extends AppCompatActivity
             this.msgFin.setText("Symboles inversés !");
         }
         this.initGrille();
+        this.stopIA = false;
 
         this.btnRejouer.setEnabled(false);
         VueMorpion vueMorpion = findViewById(R.id.vueMorpion);
@@ -140,25 +142,27 @@ public class TicTacToeActivity extends AppCompatActivity
 
     public void clickIA()
     {
-        this.interactionAutorisee = false;
-        this.jCourant = this.j2;
-        if (this.nbCoups != Math.pow(this.tailleGrille, 2))
+        if (!this.stopIA)
         {
-            int lig = (int) (Math.random() * this.tailleGrille);;
-            int col = (int) (Math.random() * this.tailleGrille);;
-            while (this.grille[lig][col] != ' ')
+            this.interactionAutorisee = false;
+            this.jCourant = this.j2;
+            if (this.nbCoups != Math.pow(this.tailleGrille, 2))
             {
-                lig = (int) (Math.random() * this.tailleGrille);
-                col = (int) (Math.random() * this.tailleGrille);
+                int lig = (int) (Math.random() * this.tailleGrille);;
+                int col = (int) (Math.random() * this.tailleGrille);;
+                while (this.grille[lig][col] != ' ')
+                {
+                    lig = (int) (Math.random() * this.tailleGrille);
+                    col = (int) (Math.random() * this.tailleGrille);
+                }
+                this.nbCoups++;
+                this.grille[lig][col] = this.jCourant.getSymbole();
+                this.jCourant = this.j1;
+                this.interactionAutorisee = true;
+                this.verifVictoire(this.jCourant.getSymbole(), lig, col);
+
             }
-            this.nbCoups++;
-            this.grille[lig][col] = this.jCourant.getSymbole();
-            this.jCourant = this.j1;
-            this.interactionAutorisee = true;
-            this.verifVictoire(this.jCourant.getSymbole(), lig, col);
-
         }
-
     }
 
     public void click(int lig, int col)
@@ -170,7 +174,11 @@ public class TicTacToeActivity extends AppCompatActivity
             this.verifVictoire(this.jCourant.getSymbole(), lig, col);
             if (this.mode.equals("Solo"))
             {
-                this.clickIA();
+                this.interactionAutorisee = false;
+                if (!this.stopIA)
+                {
+                    this.clickIA();
+                }
             }
             else if (this.jCourant == this.j1)
             {
@@ -186,6 +194,7 @@ public class TicTacToeActivity extends AppCompatActivity
 
     public void verifVictoire(char cara, int lig, int col)
     {
+        this.stopIA = false;
         int alignementNecessaire = 4;
 
         if (this.tailleGrille < alignementNecessaire)
@@ -258,6 +267,7 @@ public class TicTacToeActivity extends AppCompatActivity
     {
         String msgFin;
         this.interactionAutorisee = false;
+        this.stopIA = true;
 
         if (victoire)
         {
