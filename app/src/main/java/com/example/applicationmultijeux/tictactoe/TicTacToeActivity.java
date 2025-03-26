@@ -91,14 +91,23 @@ public class TicTacToeActivity extends AppCompatActivity
             this.msgFin.setText("Symboles inversés !");
         }
         this.initGrille();
-        this.jCourant = this.j1;
-        this.nbParties ++;
-
 
         this.btnRejouer.setEnabled(false);
         VueMorpion vueMorpion = findViewById(R.id.vueMorpion);
         vueMorpion.invalidate();
-        this.interactionAutorisee = true;
+        this.jCourant = j1;
+        if (this.mode.equals("Solo") && this.nbParties%2 != 0)
+        {
+            this.jCourant = j2;
+            this.clickIA();
+        }
+        else
+        {
+            this.interactionAutorisee = true;
+        }
+
+        this.nbParties ++;
+
 
     }
 
@@ -129,13 +138,10 @@ public class TicTacToeActivity extends AppCompatActivity
         return this.grille;
     }
 
-    public boolean getInteractionAutorisee()
-    {
-        return this.interactionAutorisee;
-    }
-
     public void clickIA()
     {
+        this.interactionAutorisee = false;
+        this.jCourant = this.j2;
         if (this.nbCoups != Math.pow(this.tailleGrille, 2))
         {
             int lig = (int) (Math.random() * this.tailleGrille);;
@@ -147,24 +153,23 @@ public class TicTacToeActivity extends AppCompatActivity
             }
             this.nbCoups++;
             this.grille[lig][col] = this.jCourant.getSymbole();
-            this.verifVictoire(this.jCourant.getSymbole(), lig, col);
             this.jCourant = this.j1;
             this.interactionAutorisee = true;
+            this.verifVictoire(this.jCourant.getSymbole(), lig, col);
+
         }
 
     }
 
     public void click(int lig, int col)
     {
-        if (this.grille[lig][col] == ' ')
+        if (this.interactionAutorisee && this.grille[lig][col] == ' ')
         {
             this.nbCoups++;
             this.grille[lig][col] = this.jCourant.getSymbole();
             this.verifVictoire(this.jCourant.getSymbole(), lig, col);
             if (this.mode.equals("Solo"))
             {
-                this.interactionAutorisee = false;
-                this.jCourant = this.j2;
                 this.clickIA();
             }
             else if (this.jCourant == this.j1)
@@ -176,6 +181,7 @@ public class TicTacToeActivity extends AppCompatActivity
                 this.jCourant = j1;
             }
         }
+
     }
 
     public void verifVictoire(char cara, int lig, int col)
@@ -384,10 +390,6 @@ class VueMorpion extends View
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        if (!((TicTacToeActivity) getContext()).getInteractionAutorisee())
-        {
-            return true;
-        }
         float x = event.getX();
         float y = event.getY();
 
