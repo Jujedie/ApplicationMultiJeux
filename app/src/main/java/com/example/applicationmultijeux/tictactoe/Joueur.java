@@ -4,7 +4,6 @@ public class Joueur
 {
     private int id;
     private char symbole;
-    private String couleur;
     private int score;
     public Joueur(int id, char symbole)
     {
@@ -23,10 +22,6 @@ public class Joueur
     public int getScore()
     {
         return this.score;
-    }
-    public String getCouleur()
-    {
-        return this.couleur;
     }
 
     public void setSymbole(char symbole)
