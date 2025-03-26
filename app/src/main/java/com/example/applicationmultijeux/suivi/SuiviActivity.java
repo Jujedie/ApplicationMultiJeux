@@ -9,7 +9,6 @@ import android.hardware.Sensor;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,7 +28,8 @@ public class SuiviActivity extends AppCompatActivity implements SensorEventListe
     private Sensor accelerometre;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suivi);
 
@@ -86,12 +86,14 @@ public class SuiviActivity extends AppCompatActivity implements SensorEventListe
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         sensorManager.registerListener(this, accelerometre, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
-    public void finirPartie() {
+    public void finirPartie()
+    {
         int malus = this.dessin.getPointMalus();
         this.points += malus;
 
