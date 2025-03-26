@@ -157,11 +157,11 @@ public class TicTacToeActivity extends AppCompatActivity
                 }
                 this.nbCoups++;
                 this.grille[lig][col] = this.jCourant.getSymbole();
-                this.verifVictoire(this.jCourant.getSymbole(), lig, col);
-                this.jCourant = this.j1;
-                this.interactionAutorisee = true;
-
-
+                if (!this.verifVictoire(this.jCourant.getSymbole(), lig, col))
+                {
+                    this.jCourant = this.j1;
+                    this.interactionAutorisee = true;
+                }
             }
         }
     }
@@ -180,6 +180,7 @@ public class TicTacToeActivity extends AppCompatActivity
                 {
                     this.clickIA();
                 }
+
             }
             else if (this.jCourant == this.j1)
             {
@@ -193,7 +194,7 @@ public class TicTacToeActivity extends AppCompatActivity
 
     }
 
-    public void verifVictoire(char cara, int lig, int col)
+    public boolean verifVictoire(char cara, int lig, int col)
     {
         this.stopIA = false;
         int alignementNecessaire = 4;
@@ -207,14 +208,14 @@ public class TicTacToeActivity extends AppCompatActivity
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
             this.finJeu(true);
-            return;
+            return true;
         }
 
         if (verifAlignement(0, col, 1, 0, cara, alignementNecessaire))
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
             this.finJeu(true);
-            return;
+            return true;
         }
 
         int departx = lig - Math.min(lig, col);
@@ -223,7 +224,7 @@ public class TicTacToeActivity extends AppCompatActivity
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
             this.finJeu(true);
-            return;
+            return true;
         }
 
         departx = lig - Math.min(lig, this.tailleGrille - 1 - col);
@@ -232,13 +233,15 @@ public class TicTacToeActivity extends AppCompatActivity
         {
             this.jCourant.setScore(this.jCourant.getScore() + 1);
             this.finJeu(true);
-            return;
+            return true;
         }
 
         if (this.nbCoups == Math.pow(this.tailleGrille, 2))
         {
             this.finJeu(false);
+            return true;
         }
+        return false;
     }
 
     private boolean verifAlignement(int xdepart, int ydepart, int xajout, int yajout, char cara, int alignement)
